@@ -58,7 +58,7 @@ const LaunchpadCard: React.FC<LaunchpadCardProps> = ({ ido }) => {
                             alignItems: "center",
                             justifyContent: "center",
                         }}>
-                            <LaunchpadImg src={`/images/launchpad/${ido.id}.png`} />
+                            <LaunchpadImg src={`./images/launchpad/${ido.id}.png`} />
 
                             <Box>
                                 <CardTitle>{ido.name}</CardTitle>

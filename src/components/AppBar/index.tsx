@@ -77,7 +77,7 @@ function NavBar() {
 
                         <ImgContainer href="/">
                             {
-                                !changeLogo ? <LogoImg src="/images/logo.svg" /> : <LogoImg src="/images/mini-logo.svg" />
+                                !changeLogo ? <LogoImg src="./images/logo.svg" /> : <LogoImg src="./images/mini-logo.svg" />
                             }
                         </ImgContainer>
                     </Box>
@@ -125,7 +125,7 @@ function NavBar() {
 
                         {
                             account ? <VariantButton width="180px">
-                                <WalletIcon src="/images/metamask.svg" />
+                                <WalletIcon src="./images/metamask.svg" />
                                 <span>{truncateWalletAddress(account)}</span>
                             </VariantButton> : <UnlockButton isVariant={true} />
                         }

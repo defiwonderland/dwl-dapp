@@ -44,7 +44,7 @@ const TradeCard: React.FC = () => {
                             justifyContent: "start",
                             width: "200px"
                         }}>
-                            <CustomImg src="/images/trades/matic.png" />
+                            <CustomImg src="./images/trades/matic.png" />
 
                             <Box>
                                 <CardText ml="15px" mt="5px" mb="5px" fontWeight={600} color="#ffffff">From</CardText>
@@ -71,7 +71,7 @@ const TradeCard: React.FC = () => {
                             justifyContent: "start",
                             width: "200px",
                         }}>
-                            <CustomImg src="/images/trades/WNDR.png" />
+                            <CustomImg src="./images/trades/WNDR.png" />
 
                             <Box>
                                 <CardText ml="15px" mt="5px" mb="5px" fontWeight={600} color="#ffffff">To</CardText>

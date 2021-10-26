@@ -65,7 +65,7 @@ const StakeCard = () => {
                             flex: 0.7
                         }}>
                             <StakeTokenBox>
-                                <img src="/images/mini-logo.svg" alt="logo" height="34px" />
+                                <img src="./images/mini-logo.svg" alt="logo" height="34px" />
                             </StakeTokenBox>
 
                             <StyledH3 style={{ color: "#ffffff" }}>WNDR</StyledH3>
