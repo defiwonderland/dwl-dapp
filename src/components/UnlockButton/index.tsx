@@ -1,6 +1,7 @@
 import React from "react"
 import { PrimaryButton, VariantButton, ErrorButton } from "../Button"
-import { useWeb3React, UnsupportedChainIdError } from "@web3-react/core";
+import { UnsupportedChainIdError } from "@web3-react/core";
+import useActiveWeb3React from "../../hooks/useActiveWeb3React";
 import useAuth from "../../hooks/useAuth";
 import { ConnectorNames } from "../../utils/web3React"
 import { BiPulse } from "react-icons/bi"
@@ -13,7 +14,7 @@ interface ButtonType {
 
 const UnlockButton: React.FC<ButtonType> = ({ isVariant, width, minheight }) => {
     const { login } = useAuth()
-    const { error } = useWeb3React()
+    const { error } = useActiveWeb3React()
 
     let comp;
 

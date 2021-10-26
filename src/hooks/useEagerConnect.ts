@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import useAuth from "./useAuth"
 import { ConnectorNames } from "../utils/web3React"
 import useActiveWeb3React from "./useActiveWeb3React"
+import { UnsupportedChainIdError } from "@web3-react/core"
 
 const useEagerConnect = () => {
     const { login, logout } = useAuth()
@@ -30,7 +31,7 @@ const useEagerConnect = () => {
             const handleNetworkChanged = (networkId: string | number) => {
                 console.log("Handling 'networkChanged' event with payload", networkId)
 
-                if (error) {
+                if (error instanceof UnsupportedChainIdError) {
                     logout()
                 } else {
                     login(connectorId)
