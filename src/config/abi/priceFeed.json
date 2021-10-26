@@ -1,0 +1,31 @@
+[
+    {
+        "inputs": [
+            {
+                "internalType": "contract UniswapV2Pair",
+                "name": "_uniswapV2Pair",
+                "type": "address"
+            }
+        ],
+        "name": "getLPTotalValue",
+        "outputs": [
+            {
+                "internalType": "address[2]",
+                "name": "",
+                "type": "address[2]"
+            },
+            {
+                "internalType": "uint256[2]",
+                "name": "",
+                "type": "uint256[2]"
+            },
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
+]
