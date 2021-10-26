@@ -20,7 +20,11 @@ const useEagerConnect = () => {
 
             const handleChainChanged = (chainId: string | number) => {
                 console.log("Handling 'chainChanged' event with payload", chainId)
-                login(connectorId)
+                if (error instanceof UnsupportedChainIdError) {
+                    logout()
+                } else {
+                    login(connectorId)
+                }
             }
             const handleAccountsChanged = (accounts: string[]) => {
                 console.log("Handling 'accountsChanged' event with payload", accounts)
