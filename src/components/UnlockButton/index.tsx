@@ -10,9 +10,10 @@ interface ButtonType {
     isVariant?: boolean,
     width?: string,
     minheight?: string
+    textcolor?: string
 }
 
-const UnlockButton: React.FC<ButtonType> = ({ isVariant, width, minheight }) => {
+const UnlockButton: React.FC<ButtonType> = ({ isVariant, width, minheight, textcolor }) => {
     const { login } = useAuth()
     const { error } = useActiveWeb3React()
 
@@ -25,7 +26,7 @@ const UnlockButton: React.FC<ButtonType> = ({ isVariant, width, minheight }) => 
         </ErrorButton>
     } else {
         if (isVariant) {
-            comp = <VariantButton width={width} minheight={minheight} style={{ margin: "0px" }} onClick={() => login(ConnectorNames.Injected)} >Connect Wallet</VariantButton>
+            comp = <VariantButton width={width} minheight={minheight} style={{ margin: "0px" }} textcolor={textcolor} onClick={() => login(ConnectorNames.Injected)} >Connect Wallet</VariantButton>
         } else {
             comp = <PrimaryButton width={width} minheight={minheight} onClick={() => login(ConnectorNames.Injected)}>Connect Wallet</PrimaryButton>
         }

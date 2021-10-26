@@ -8,8 +8,11 @@ import { Grid } from "@mui/material";
 import CollapseLink from "./CollapseLink";
 import { FaTwitter, FaFacebookF, FaYoutube, FaInstagram, FaSnapchat } from "react-icons/fa"
 import { CollapseLinkProps } from "./types";
+import UnlockButton from "../UnlockButton";
+import useActiveWeb3React from "../../hooks/useActiveWeb3React";
 
 const Footer = () => {
+    const { account } = useActiveWeb3React()
     const initialState = window.innerWidth >= 900 ? true : false
     const [windowWidth, setWindowWidth] = useState(initialState)
     const navigateLinks: CollapseLinkProps = {
@@ -124,7 +127,9 @@ const Footer = () => {
                         <LogoImg src="./images/logo-white.svg" />
                     </ImgContainer>
 
-                    <VariantButton style={{ width: "200px", color: "#fff" }}>Connect Wallet</VariantButton>
+                    {
+                        account ? <Box /> : <UnlockButton isVariant={true} textcolor="#ffffff" width="200px" />
+                    }
                 </Box>
 
                 <div style={{ margin: "30px 0" }} />

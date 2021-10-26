@@ -3,11 +3,14 @@ import { Wrapper, CenterConatiner } from "../../../components/Layout";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { StyledH2, StyledText } from "../../../components/Text";
-import { PrimaryButton } from "../../../components/Button";
 import { StyledImgContent } from "../HomeElements";
 import cap from "../../../assets/images/home/cap.png"
+import useActiveWeb3React from "../../../hooks/useActiveWeb3React";
+import UnlockButton from "../../../components/UnlockButton";
 
 const HorizontalContent = () => {
+    const { account } = useActiveWeb3React()
+
     return (
         <Wrapper>
             <Box sx={{ flexGrow: 1 }}>
@@ -23,7 +26,9 @@ const HorizontalContent = () => {
                                 or Stablecoins work for you.
                             </StyledText>
                             <CenterConatiner>
-                                <PrimaryButton style={{ width: "200px" }}>Connect Wallet</PrimaryButton>
+                                {
+                                    account ? <Box /> : <UnlockButton width="200px" />
+                                }
                             </CenterConatiner>
                         </div>
                     </Grid>

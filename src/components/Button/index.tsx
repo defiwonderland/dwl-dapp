@@ -56,8 +56,8 @@ export const ErrorButton = styled(PrimaryButton)<{ width?: string }>(({ theme, w
     },
 }))
 
-export const VariantButton = styled(Button)<{ width?: string, minheight?: string }>(({ theme, width, minheight }) => ({
-    color: theme.palette.text.primary,
+export const VariantButton = styled(Button)<{ width?: string, minheight?: string, textcolor?: string }>(({ theme, width, minheight, textcolor }) => ({
+    color: `${textcolor ? textcolor : theme.palette.text.primary}`,
     padding: "6px 12px",
     textTransform: "none",
     fontSize: "16px",
