@@ -121,7 +121,7 @@ const Footer = () => {
                 }
                 }>
                     <ImgContainer href="/">
-                        <LogoImg src="./images/logo-white.svg" />
+                        <LogoImg src="/images/logo-white.svg" />
                     </ImgContainer>
 
                     <VariantButton style={{ width: "200px", color: "#fff" }}>Connect Wallet</VariantButton>

@@ -192,9 +192,9 @@ const PoolDetails: React.FC<PoolDetailsProps> = ({ pool }) => {
                             alignItems: "center",
                             justifyContent: "center",
                         }}>
-                            <CustomImg src={`./images/pools/${pool.stakeToken.symbol}.png`} />
+                            <CustomImg src={`/images/pools/${pool.stakeToken.symbol}.png`} />
                             <RiArrowRightSFill style={{ color: "#687d7a", width: "20px", height: "20px" }} />
-                            <CustomImg src={`./images/pools/${pool.rewardToken.symbol}.png`} />
+                            <CustomImg src={`/images/pools/${pool.rewardToken.symbol}.png`} />
                             <CardText ml="20px" fontWeight={400}>{pool.stakeToken.symbol}</CardText>
                         </Box>
                     </Box>

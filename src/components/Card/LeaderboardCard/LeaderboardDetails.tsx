@@ -40,7 +40,7 @@ const LeaderboardDetails: React.FC<LeaderboardDetailsProps> = ({ fund }) => {
             <TableCell>{fund.rank}</TableCell>
             <TableCell>{fund.score}</TableCell>
             <TableCell>
-                <CustomImg src={`./images/funds/${fund.network}.png`} width="32px" height="32px" />
+                <CustomImg src={`/images/funds/${fund.network}.png`} width="32px" height="32px" />
             </TableCell>
             <TableCell>{fund.pool}</TableCell>
             <TableCell component="th" scope="row">
