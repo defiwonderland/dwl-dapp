@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback } from "react"
 import multicall from "../utils/multicall"
 import idos from "../config/constants/idos"
 import useRefresh from "./useRefresh"

@@ -21,7 +21,7 @@ import { VariantButton } from "../../Button"
 import { Ido } from "../types"
 import moment from "moment"
 import numeral from "numeral"
-import { getIdoAddress } from "../../../utils/addressHelpers"
+import { getIdoAddress, getMainTokenSymbol } from "../../../utils/addressHelpers"
 import CustomProgressBar from "../../Progress/CustomLinearProgress"
 
 const chainId = Number(process.env.REACT_APP_CHAIN_ID)
@@ -62,7 +62,7 @@ const LaunchpadCard: React.FC<LaunchpadCardProps> = ({ ido }) => {
 
                             <Box>
                                 <CardTitle>{ido.name}</CardTitle>
-                                <CardText mt="10px" mb="5px">Goal: {ido.rate ? numeral(ido.salesAmount / ido.rate).format("0,0") : "0"} {ido.mainToken}</CardText>
+                                <CardText mt="10px" mb="5px">Goal: {ido.rate ? numeral(ido.salesAmount / ido.rate).format("0,0") : "0"} {getMainTokenSymbol(ido, chainId)}</CardText>
                             </Box>
                         </Box>
 
@@ -133,7 +133,7 @@ const LaunchpadCard: React.FC<LaunchpadCardProps> = ({ ido }) => {
                             margin: "10px 0"
                         }}>
                             <CardText mb="0px" mt="0px" mr="5px">Ticker Price: </CardText>
-                            <CardText fontWeight={500} mt="0px" mb="0px">1 {ido.mainToken} = {ido.rate} {ido.id.toUpperCase()}</CardText>
+                            <CardText fontWeight={500} mt="0px" mb="0px">1 {getMainTokenSymbol(ido, chainId)} = {ido.rate} {ido.id.toUpperCase()}</CardText>
                         </Box>
 
                         <Box sx={{
@@ -153,7 +153,7 @@ const LaunchpadCard: React.FC<LaunchpadCardProps> = ({ ido }) => {
                             margin: "10px 0"
                         }}>
                             <CardText mb="0px" mt="0px" mr="5px">Fundraising Goal: </CardText>
-                            <CardText fontWeight={500} mt="0px" mb="0px"> {ido.rate ? numeral(ido.salesAmount / ido.rate).format("0,0") : "0"} {ido.mainToken}</CardText>
+                            <CardText fontWeight={500} mt="0px" mb="0px"> {ido.rate ? numeral(ido.salesAmount / ido.rate).format("0,0") : "0"} {getMainTokenSymbol(ido, chainId)}</CardText>
                         </Box>
 
                         <Box sx={{
@@ -177,8 +177,8 @@ const LaunchpadCard: React.FC<LaunchpadCardProps> = ({ ido }) => {
                 open={openIdoDialog}
                 handleClose={() => setOpenIdoDialog(false)}
                 title={`Participate ${ido.id.toUpperCase()} IDO`}
-                desc={`${mainTokenBalance} ${ido.mainToken} in wallet`}
-                mainToken={ido.mainToken}
+                desc={`${mainTokenBalance} ${getMainTokenSymbol(ido, chainId)} in wallet`}
+                mainToken={getMainTokenSymbol(ido, chainId)}
                 walletTokenNumber={mainTokenBalance}
                 idoAddress={getIdoAddress(ido, chainId)}
                 rate={ido.rate}

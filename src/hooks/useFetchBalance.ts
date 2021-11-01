@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import useActiveWeb3React from "./useActiveWeb3React"
 import { getBalanceNumber } from "../utils/formatBalance"
 import BigNumber from "bignumber.js"

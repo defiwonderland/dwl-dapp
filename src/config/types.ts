@@ -23,7 +23,7 @@ export interface IdoConfig {
     id: string
     idoAddress: Address
     tokenDecimals: number
-    mainToken: string
+    mainToken: Address
     name: string
     description: string
     projectSiteUrl: string,
@@ -67,5 +67,14 @@ export interface PublicPostConfig {
     title: string,
     img: string,
     smImg: string,
+}
+
+export interface SerializedToken {
+    chainId: number
+    address: string
+    decimals: number
+    symbol?: string
+    name?: string
+    projectLink?: string
 }
 

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import { FooterWrapper } from "../Layout"
 import { FooterContainer, LogoImg, ImgContainer, FooterLink, FooterLinkItems, SocialWrap, SocialLink } from "./elements"
 import Box from '@mui/material/Box';
-import { VariantButton } from "../Button";
 import { StyledH5 } from "../Text";
 import { Grid } from "@mui/material";
 import CollapseLink from "./CollapseLink";

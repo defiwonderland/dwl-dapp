@@ -3,11 +3,10 @@ import { tokenMapping } from "../config/constants/valueMapping"
 import { ethers } from "ethers";
 import priceFeedABI from "../config/abi/priceFeed.json"
 import { getPriceFeedAddress } from "./addressHelpers";
-import { getWndrMaticAddress, getTokenAddress } from "./addressHelpers";
+import { getWndrMaticAddress, getTokenAddress, getWndrEthAddress } from "./addressHelpers";
 import { simpleRpcProvider } from "./providers";
 import { getBalanceNumber } from "./formatBalance";
-
-const chainId = Number(process.env.REACT_APP_CHAIN_ID)
+import { ChainId } from "../config";
 
 const url = "https://api.coingecko.com/api/v3/simple/price"
 
@@ -35,17 +34,23 @@ export const fetchPrice = async () => {
     return results
 }
 
-export const fetchWndrPrice = async () => {
+export const fetchWndrPrice = async (chainId: ChainId) => {
     try {
         const priceFeed = new ethers.Contract(getPriceFeedAddress(chainId), priceFeedABI, simpleRpcProvider)
-        const result = await priceFeed.getLPTotalValue(getWndrMaticAddress(chainId))
+        let result: any
+        if (chainId === ChainId.MAINNET) {
+            result = await priceFeed.getLPTotalValue(getWndrMaticAddress(chainId))
+        } else {
+            result = await priceFeed.getLPTotalValue(getWndrEthAddress(chainId))
+        }
+
         const token1 = result[0][0]
         const tokenAmount1 = getBalanceNumber(result[1][0]._hex)
         const tokenAmount2 = getBalanceNumber(result[1][1]._hex)
         if (token1 === getTokenAddress("WNDR", chainId)) {
-            return tokenAmount1 / tokenAmount2
-        } else {
             return tokenAmount2 / tokenAmount1
+        } else {
+            return tokenAmount1 / tokenAmount2
         }
     } catch (error) {
         console.error("Failled to get wndr price", error)

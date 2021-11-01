@@ -5,7 +5,6 @@ import {
     CardText
 } from "../elements"
 import TableCell from '@mui/material/TableCell';
-import { StyledTableCell } from "../elements";
 import { Table, TableRow, TableBody } from "@mui/material";
 import { Box } from "@mui/system";
 import Rating from '@mui/material/Rating';

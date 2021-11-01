@@ -8,11 +8,14 @@ const idos: IdoConfig[] = [
         name: "BUB Coin",
         idoAddress: {
             [ChainId.MAINNET]: "",
-            [ChainId.TESTNET]: "0xe450C5169DdD856538c9F7aA21383096994de64c"
+            [ChainId.TESTNET]: "0xE323Dc64B8fA21bc3e938245726ae2c25D537b79"
         },
         tokenDecimals: getTokenDecimals('BUB'),
-        mainToken: "MATIC",
-        salesAmount: 1000000,
+        mainToken: {
+            [ChainId.MAINNET]: "MATIC",
+            [ChainId.TESTNET]: "ETH"
+        },
+        salesAmount: 5000000,
         description: "A community driven token, issued by Australia Blockchain Hub",
         projectSiteUrl: "https://chainhub.com.au",
     },

@@ -14,7 +14,7 @@ const tokenInfo: TokenInfo = {
     "WNDR": {
         address: {
             [ChainId.MAINNET]: "",
-            [ChainId.TESTNET]: "0xbf212679f4A76D1fB194aDEFa8d831Ca809B79c5"
+            [ChainId.TESTNET]: "0xda01d1EbB5f9Bd712CC8EB8D3EFea7e0547C854f"
         },
         decimals: 18
     },
@@ -22,7 +22,7 @@ const tokenInfo: TokenInfo = {
     "MATIC": {
         address: {
             [ChainId.MAINNET]: "",
-            [ChainId.TESTNET]: "0x5b67676a984807a212b1c59ebfc9b3568a474f0a"
+            [ChainId.TESTNET]: ""
         },
         decimals: 18
     },
@@ -30,7 +30,7 @@ const tokenInfo: TokenInfo = {
     "ETH": {
         address: {
             [ChainId.MAINNET]: "",
-            [ChainId.TESTNET]: "0x4c0D84810A3C2C07c46Fd595E05614818f3039B0"
+            [ChainId.TESTNET]: "0xd0a1e359811322d97991e03f863a0c30c2cf029c"
         },
         decimals: 18
     },
@@ -38,7 +38,7 @@ const tokenInfo: TokenInfo = {
     "BUB": {
         address: {
             [ChainId.MAINNET]: "",
-            [ChainId.TESTNET]: "0xA8b228a43AE116725b545aa64eFd234e33bC78E8"
+            [ChainId.TESTNET]: "0x3BA3127c93248A88dfD4eeA5b27b22B796043F89"
         },
         decimals: 18
     }

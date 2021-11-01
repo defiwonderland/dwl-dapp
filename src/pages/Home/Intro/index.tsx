@@ -3,7 +3,7 @@ import { Wrapper, Spacing } from "../../../components/Layout";
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { StyledH1, StyledText } from "../../../components/Text";
-import { PrimaryButton, VariantButton } from "../../../components/Button";
+import { VariantButton } from "../../../components/Button";
 import IntroImg from "../../../assets/images/home/mouse.png"
 import { StyledImgContent } from "../HomeElements";
 import UnlockButton from "../../../components/UnlockButton";

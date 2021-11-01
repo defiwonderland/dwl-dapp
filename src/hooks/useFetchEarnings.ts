@@ -9,6 +9,7 @@ import { fetchPrice, fetchWndrPrice } from "../utils/fetchTokenPrice";
 import { getTokenAddress } from "../utils/addressHelpers";
 import { getTokenDecimals } from "../utils/decimalHelpers";
 import { FarmConfig } from "../config/types";
+import { ChainId } from "../config";
 
 const chainId = Number(process.env.REACT_APP_CHAIN_ID)
 
@@ -20,8 +21,13 @@ export const useFetchEarnings = (farmsConfig: FarmConfig[], isLp: boolean) => {
         let results: any[] = []
         const now = Math.floor(Date.now() / 1000)
         const tokenPrice = await fetchPrice()
-        const wndrMatic = await fetchWndrPrice()
-        const wndrPrice = { "WNDR": Number(wndrMatic) * tokenPrice["MATIC"] }
+        const wndrRatio = await fetchWndrPrice(chainId)
+        let wndrPrice: { WNDR: number }
+        if (chainId === ChainId.MAINNET) {
+            wndrPrice = { "WNDR": Number(wndrRatio) * tokenPrice["MATIC"] }
+        } else {
+            wndrPrice = { "WNDR": Number(wndrRatio) * tokenPrice["ETH"] }
+        }
         const newTokenPrice = Object.assign(tokenPrice, wndrPrice)
 
         const calls = farmsConfig.map((farm) => ({

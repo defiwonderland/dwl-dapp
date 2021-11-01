@@ -44,11 +44,11 @@ const TradeCard: React.FC = () => {
                             justifyContent: "start",
                             width: "200px"
                         }}>
-                            <CustomImg src="./images/trades/matic.png" />
+                            <CustomImg src="./images/trades/eth.png" />
 
                             <Box>
                                 <CardText ml="15px" mt="5px" mb="5px" fontWeight={600} color="#ffffff">From</CardText>
-                                <CardText ml="15px" mt="5px" mb="5px" fontWeight={400} color="#ffffff">MATIC</CardText>
+                                <CardText ml="15px" mt="5px" mb="5px" fontWeight={400} color="#ffffff">ETH</CardText>
                             </Box>
                         </Box>
 
