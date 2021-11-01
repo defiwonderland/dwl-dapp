@@ -1,5 +1,5 @@
 import React from "react"
-import Banner from "./Intro"
+import Intro from "./Intro"
 import Stats from "./Stats"
 import HorizontalContent from "./HorizontalContent"
 import VerticalContent from "./VerticalContent"
@@ -12,7 +12,7 @@ function Home(): JSX.Element {
 
     return (
         <section style={{ marginTop: "70px" }}>
-            <Banner />
+            <Intro />
             <Stats />
             <HorizontalContent />
             <VerticalContent title="Every Transaction Saves The Planet" desc={desc1} />

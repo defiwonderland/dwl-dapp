@@ -7,10 +7,10 @@ import { VariantButton } from "../../../components/Button";
 import IntroImg from "../../../assets/images/home/mouse.png"
 import { StyledImgContent } from "../HomeElements";
 import UnlockButton from "../../../components/UnlockButton";
-import { useWeb3React } from "@web3-react/core";
+import useActiveWeb3React from "../../../hooks/useActiveWeb3React";
 
-const Banner = () => {
-    const { account } = useWeb3React()
+const Intro = () => {
+    const { account } = useActiveWeb3React()
 
     return (
         <Wrapper>
@@ -52,4 +52,4 @@ const Banner = () => {
     )
 }
 
-export default Banner
+export default Intro

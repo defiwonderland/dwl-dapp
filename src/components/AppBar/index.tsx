@@ -13,7 +13,7 @@ import {
 import DropdownMenu from './components/DropdownMenu';
 import SidebarMenu from './components/SidebarMenu';
 import UnlockButton from '../UnlockButton';
-import { useWeb3React } from "@web3-react/core";
+import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { VariantButton } from '../Button';
 import truncateWalletAddress from '../../utils/truncateWalletAddress';
 
@@ -23,7 +23,7 @@ function NavBar() {
     const [menuItems, setMenuItems] = useState<string[]>(initialState)
     const [changeLogo, setChangeLogo] = useState<boolean>(logoState)
     const [scroll, setScroll] = useState<boolean>(false)
-    const { account } = useWeb3React()
+    const { account } = useActiveWeb3React()
 
     const updateMenuItems = () => {
         if (window.innerWidth >= 1200) {
