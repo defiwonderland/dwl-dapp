@@ -21,9 +21,6 @@ export const getIdoAddress = (ido: IdoConfig, chainId: ChainId) => {
     return ido.idoAddress[chainId]
 }
 
-export const getMainTokenSymbol = (ido: IdoConfig, chainId: ChainId) => {
-    return ido.mainToken[chainId]
-}
 
 // get token addresses
 export const getTokenAddress = (token: string, chainId: ChainId) => {

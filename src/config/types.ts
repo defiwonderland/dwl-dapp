@@ -28,7 +28,7 @@ export interface IdoConfig {
     name: string
     description: string
     projectSiteUrl: string,
-    salesAmount: number
+    salesAmount: Address
 }
 
 export interface NftConfg {

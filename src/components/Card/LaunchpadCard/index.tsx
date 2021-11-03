@@ -21,7 +21,8 @@ import { VariantButton } from "../../Button"
 import { Ido } from "../types"
 import moment from "moment"
 import numeral from "numeral"
-import { getIdoAddress, getMainTokenSymbol } from "../../../utils/addressHelpers"
+import { getIdoAddress } from "../../../utils/addressHelpers"
+import { getMainTokenSymbol, getSalesAmount } from "../../../utils/idoHelpers"
 import CustomProgressBar from "../../Progress/CustomLinearProgress"
 
 const chainId = Number(process.env.REACT_APP_CHAIN_ID)
@@ -32,6 +33,7 @@ interface LaunchpadCardProps {
 
 const LaunchpadCard: React.FC<LaunchpadCardProps> = ({ ido }) => {
     const now = Math.floor(Date.now() / 1000)
+    const isIdoEnded = ido.hasClosed || Number(ido.remainingTokens) === 0
     const endTime = ido.closingTime
     const leftTime = Number(endTime) - now
     const duration = moment.duration(leftTime, 'seconds');
@@ -62,7 +64,7 @@ const LaunchpadCard: React.FC<LaunchpadCardProps> = ({ ido }) => {
 
                             <Box>
                                 <CardTitle>{ido.name}</CardTitle>
-                                <CardText mt="10px" mb="5px">Goal: {ido.rate ? numeral(ido.salesAmount / ido.rate).format("0,0") : "0"} {getMainTokenSymbol(ido, chainId)}</CardText>
+                                <CardText mt="10px" mb="5px">Goal: {ido.rate ? numeral(getSalesAmount(ido, chainId) / ido.rate).format("0,0") : "0"} {getMainTokenSymbol(ido, chainId)}</CardText>
                             </Box>
                         </Box>
 
@@ -92,7 +94,7 @@ const LaunchpadCard: React.FC<LaunchpadCardProps> = ({ ido }) => {
                             justifyContent: "start",
                         }}>
                             <CardText mr="5px">Ends in:</CardText>
-                            <CardText fontWeight={500}>{`${duration.months() ? duration.months() : "0"} months, ${duration.days() ? duration.days() : "0"} days, ${duration.hours() ? duration.hours() : "0"} hours, ${duration.minutes() ? duration.minutes() : "0"} mins`}</CardText>
+                            <CardText fontWeight={500}>{isIdoEnded ? "Finished" : `${duration.months() ? duration.months() : "0"} months, ${duration.days() ? duration.days() : "0"} days, ${duration.hours() ? duration.hours() : "0"} hours, ${duration.minutes() ? duration.minutes() : "0"} mins`}</CardText>
                         </Box>
                     </Box>
                 </Box>
@@ -107,11 +109,11 @@ const LaunchpadCard: React.FC<LaunchpadCardProps> = ({ ido }) => {
 
                     <Box sx={{ margin: "20px 0" }}>
                         <CardText mb="0px" mt="0px" mr="5px">{ido.id.toUpperCase()} IDO Sales Progression: </CardText>
-                        <CustomProgressBar value={ido.remainingTokens ? (1 - Number(ido.remainingTokens) / ido.salesAmount) * 100 : 0} />
+                        <CustomProgressBar value={ido.remainingTokens ? (1 - Number(ido.remainingTokens) / getSalesAmount(ido, chainId)) * 100 : 0} />
                     </Box>
 
                     <Box sx={{ marginTop: "30px" }}>
-                        {account ? <VariantButton style={{ margin: "0px" }} onClick={() => setOpenIdoDialog(true)} disabled={!ido.isOpen || ido.hasClosed}>Participate</VariantButton> : <UnlockButton isVariant={true} />}
+                        {account ? <VariantButton style={{ margin: "0px" }} onClick={() => setOpenIdoDialog(true)} disabled={!ido.isOpen || isIdoEnded}>Participate</VariantButton> : <UnlockButton isVariant={true} />}
                     </Box>
                 </Box>
 
@@ -153,7 +155,7 @@ const LaunchpadCard: React.FC<LaunchpadCardProps> = ({ ido }) => {
                             margin: "10px 0"
                         }}>
                             <CardText mb="0px" mt="0px" mr="5px">Fundraising Goal: </CardText>
-                            <CardText fontWeight={500} mt="0px" mb="0px"> {ido.rate ? numeral(ido.salesAmount / ido.rate).format("0,0") : "0"} {getMainTokenSymbol(ido, chainId)}</CardText>
+                            <CardText fontWeight={500} mt="0px" mb="0px"> {ido.rate ? numeral(getSalesAmount(ido, chainId) / ido.rate).format("0,0") : "0"} {getMainTokenSymbol(ido, chainId)}</CardText>
                         </Box>
 
                         <Box sx={{

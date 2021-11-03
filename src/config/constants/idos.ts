@@ -17,7 +17,11 @@ const idos: IdoConfig[] = [
             [ChainId.KOVAN]: "ETH",
             [ChainId.MATIC_TESTNET]: "MATIC"
         },
-        salesAmount: 5000000,
+        salesAmount: {
+            [ChainId.MATIC]: "MATIC",
+            [ChainId.KOVAN]: "5000000",
+            [ChainId.MATIC_TESTNET]: "1000000"
+        },
         description: "A community driven token, issued by Australia Blockchain Hub",
         projectSiteUrl: "https://chainhub.com.au",
     },
