@@ -1,8 +1,9 @@
-import { ChainId } from ".";
+import { ChainId } from "."
 
 export interface Address {
-    [ChainId.MAINNET]: string
-    [ChainId.TESTNET]: string
+    [ChainId.MATIC]: string
+    [ChainId.KOVAN]: string
+    [ChainId.MATIC_TESTNET]: string
 }
 
 export interface FarmConfig {

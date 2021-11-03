@@ -9,10 +9,12 @@ import useActiveWeb3React from "../../hooks/useActiveWeb3React"
 import { useFetchEarnings } from "../../hooks/useFetchEarnings"
 import { farms } from "../../config/constants/farms"
 
+const chainId = Number(process.env.REACT_APP_CHAIN_ID)
+
 const Farms: React.FC = () => {
     const { account } = useActiveWeb3React()
-    const farmsConfig = useFetchFarms(farms, account)
-    const farmsEarnings = useFetchEarnings(farms, true)
+    const farmsConfig = useFetchFarms(farms(chainId), account)
+    const farmsEarnings = useFetchEarnings(farms(chainId), true)
 
     const newFarms = useMemo(() => {
         return farmsEarnings.length > 0 ? farmsConfig.map((farm, index) => {

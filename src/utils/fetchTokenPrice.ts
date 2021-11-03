@@ -38,7 +38,7 @@ export const fetchWndrPrice = async (chainId: ChainId) => {
     try {
         const priceFeed = new ethers.Contract(getPriceFeedAddress(chainId), priceFeedABI, simpleRpcProvider)
         let result: any
-        if (chainId === ChainId.MAINNET) {
+        if (chainId === ChainId.MATIC || chainId === ChainId.MATIC_TESTNET) {
             result = await priceFeed.getLPTotalValue(getWndrMaticAddress(chainId))
         } else {
             result = await priceFeed.getLPTotalValue(getWndrEthAddress(chainId))

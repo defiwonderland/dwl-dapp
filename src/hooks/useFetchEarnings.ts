@@ -23,7 +23,7 @@ export const useFetchEarnings = (farmsConfig: FarmConfig[], isLp: boolean) => {
         const tokenPrice = await fetchPrice()
         const wndrRatio = await fetchWndrPrice(chainId)
         let wndrPrice: { WNDR: number }
-        if (chainId === ChainId.MAINNET) {
+        if (chainId === ChainId.MATIC || chainId === ChainId.MATIC_TESTNET) {
             wndrPrice = { "WNDR": Number(wndrRatio) * tokenPrice["MATIC"] }
         } else {
             wndrPrice = { "WNDR": Number(wndrRatio) * tokenPrice["ETH"] }
@@ -108,7 +108,7 @@ export const useFetchEarnings = (farmsConfig: FarmConfig[], isLp: boolean) => {
             isRemBonusEnough = formatRemBonusValue > 0
             yearlyRewardsValue = yearlyReward * newTokenPrice[rewardTokenSymbol]
 
-            const isFarmEnded = isEnded && !isRemBonusEnough
+            const isFarmEnded = isEnded || !isRemBonusEnough
 
             apr = tvl === 0 ? 0 : yearlyRewardsValue / tvl * 100
 

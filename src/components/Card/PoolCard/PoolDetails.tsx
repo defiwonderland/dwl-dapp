@@ -40,6 +40,7 @@ interface PoolDetailsProps {
 
 const PoolDetails: React.FC<PoolDetailsProps> = ({ pool }) => {
     const stakeTokenAddress = pool.stakeToken.address
+    const isPoolEnded = pool.poolEarnings?.isFarmEnded
     const [stakeTokenNumber, setStakeTokenNumber] = useState<number | undefined>()
     const now = Math.floor(Date.now() / 1000)
     const endTime = pool.poolEarnings?.endTime
@@ -155,14 +156,14 @@ const PoolDetails: React.FC<PoolDetailsProps> = ({ pool }) => {
                 <StakeButton
                     color="inherit"
                     onClick={() => setOpenWithdrawDialog(true)}
-                    disabled={Number(pool.stakeTokenNumber) === 0}
+                    disabled={Number(pool.stakeTokenNumber) === 0 || isPoolEnded}
 
                 > -
                 </StakeButton>
                 <StakeButton
                     color="inherit"
                     onClick={() => setOpenDepositDialog(true)}
-                    disabled={Number(tokenBalance) === 0}
+                    disabled={Number(tokenBalance) === 0 || isPoolEnded}
                 >+</StakeButton>
             </Box>
         }
@@ -235,7 +236,10 @@ const PoolDetails: React.FC<PoolDetailsProps> = ({ pool }) => {
                                             width: "100%"
                                         }}>
                                             <CardText fontWeight={600} mt="10px" mb="10px" color="#ffffff">Ends in:</CardText>
-                                            <CardText fontWeight={400} mt="10px" mb="10px" color="#ffffff"> {`${duration.days() ? duration.days() : "0"} days, ${duration.hours() ? duration.hours() : "0"} hours, ${duration.minutes() ? duration.minutes() : "0"} mins`} </CardText>
+                                            <CardText fontWeight={400} mt="10px" mb="10px" color="#ffffff">{
+                                                isPoolEnded ? "Finished" : `${duration.days() ? duration.days() : "0"} days, ${duration.hours() ? duration.hours() : "0"} hours, ${duration.minutes() ? duration.minutes() : "0"} mins`
+                                            } </CardText>
+
                                         </Box>
 
                                         <Box sx={{

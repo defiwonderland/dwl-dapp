@@ -9,10 +9,12 @@ import PoolCard from "../../components/Card/PoolCard"
 import { Grid } from "@mui/material"
 import React, { useMemo } from "react"
 
+const chainId = Number(process.env.REACT_APP_CHAIN_ID)
+
 const Pools: React.FC = () => {
     const { account } = useActiveWeb3React()
-    const poolsConfig = useFetchFarms(pools, account)
-    const poolsEarnings = useFetchEarnings(pools, false)
+    const poolsConfig = useFetchFarms(pools(chainId), account)
+    const poolsEarnings = useFetchEarnings(pools(chainId), false)
 
     const newPools = useMemo(() => {
         return poolsEarnings.length > 0 ? poolsConfig.map((pool, index) => {

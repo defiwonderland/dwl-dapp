@@ -37,6 +37,7 @@ interface FarmCardProps {
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
     const stakeTokenAddress = farm.stakeToken.address
+    const isFarmEnded = farm.farmEarnings?.isFarmEnded
     const [stakeTokenNumber, setStakeTokenNumber] = useState<number | undefined>()
     const [expanded, setExpanded] = React.useState(false);
     const { account } = useActiveWeb3React()
@@ -162,12 +163,12 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
                 }}>
                     <StakeButton
                         onClick={() => setOpenWithdrawDialog(true)}
-                        disabled={Number(farm.stakeTokenNumber) === 0}
+                        disabled={Number(farm.stakeTokenNumber) === 0 || isFarmEnded}
                     > -
                     </StakeButton>
                     <StakeButton
                         onClick={() => setOpenDepositDialog(true)}
-                        disabled={Number(tokenBalance) === 0}
+                        disabled={Number(tokenBalance) === 0 || isFarmEnded}
                     >+</StakeButton>
                 </Box>
             </Box>
