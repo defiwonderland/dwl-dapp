@@ -25,3 +25,18 @@ export interface IdoDialogProps {
     idoAddress: string,
     rate?: number
 }
+
+export interface ConnectDialogProps {
+    open: boolean,
+    handleClose: () => void,
+}
+
+
+export interface AccountDialogProps {
+    open: boolean,
+    handleClose: () => void,
+    account?: string | null,
+    balance: number
+    networkName: string,
+    mainToken: string,
+}

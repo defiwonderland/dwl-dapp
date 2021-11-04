@@ -1,5 +1,6 @@
-import React from "react"
+import React, { useState } from "react"
 import { ChainId } from "../../config";
+import ConnectDialog from "../Dialog/ConnectDialog";
 import { PrimaryButton, VariantButton, ErrorButton } from "../Button"
 import { UnsupportedChainIdError } from "@web3-react/core";
 import useActiveWeb3React from "../../hooks/useActiveWeb3React";
@@ -17,6 +18,7 @@ interface ButtonType {
 const chainId = Number(process.env.REACT_APP_CHAIN_ID)
 
 const UnlockButton: React.FC<ButtonType> = ({ isVariant, width, minheight, textcolor }) => {
+    const [open, setOpen] = useState(false)
     const { login } = useAuth()
     const { error } = useActiveWeb3React()
 
@@ -29,17 +31,22 @@ const UnlockButton: React.FC<ButtonType> = ({ isVariant, width, minheight, textc
         </ErrorButton>
     } else {
         if (isVariant) {
-            comp = <VariantButton width={width} minheight={minheight} style={{ margin: "0px" }} textcolor={textcolor} onClick={() => login(ConnectorNames.Injected)} >Connect Wallet</VariantButton>
+            comp = <VariantButton width={width} minheight={minheight} style={{ margin: "0px" }} textcolor={textcolor} onClick={() => setOpen(true)} >Connect Wallet</VariantButton>
         } else {
-            comp = <PrimaryButton width={width} minheight={minheight} onClick={() => login(ConnectorNames.Injected)}>Connect Wallet</PrimaryButton>
+            comp = <PrimaryButton width={width} minheight={minheight} onClick={() => setOpen(true)}>Connect Wallet</PrimaryButton>
         }
     }
 
     return (
-        <div>
-            {comp}
-        </div>
-
+        <>
+            <div>
+                {comp}
+            </div>
+            <ConnectDialog
+                open={open}
+                handleClose={() => setOpen(false)}
+            />
+        </>
     )
 }
 

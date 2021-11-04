@@ -110,3 +110,29 @@ export const StyledIconButton = styled(IconButton)<{ bgcolor?: string }>(({ them
         backgroundColor: bgcolor,
     }
 }))
+
+export const CopyButton = styled(Button)(({ theme }) => ({
+    backgroundColor: "#e9ecef",
+    color: "#000000",
+    padding: "6px 12px",
+    textTransform: "none",
+    fontSize: "16px",
+    fontWeight: 600,
+    minWidth: "70px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: "5px",
+    border: `2px solid "#e9ecef"`,
+
+    '&:hover': {
+        backgroundColor: "#e9ecef",
+    },
+
+    [theme.breakpoints.down("sm")]: {
+        minWidth: "50px",
+        fontSize: "13px",
+        padding: "5px 10px",
+        margin: "0px"
+    },
+}))

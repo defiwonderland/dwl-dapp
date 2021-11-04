@@ -79,3 +79,9 @@ export interface SerializedToken {
     projectLink?: string
 }
 
+export interface WalletConfig {
+    wid: number,
+    image: string,
+    name: string
+}
+

@@ -10,20 +10,26 @@ import {
     NavLinks,
     WalletIcon
 } from './elements/Toolbar';
+import { useFetchBalance } from '../../hooks/useFetchBalance';
 import DropdownMenu from './components/DropdownMenu';
 import SidebarMenu from './components/SidebarMenu';
 import UnlockButton from '../UnlockButton';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { VariantButton } from '../Button';
 import truncateWalletAddress from '../../utils/truncateWalletAddress';
+import AccountDialog from '../Dialog/AccountDialog'
+import { getNetworkInfo } from '../../utils/getChainInfo';
 
 function NavBar() {
     const initialState = window.innerWidth >= 1200 ? ["Info", "Contact", "Documents", "Blog"] : ["Info", "Contact", "Documents", "Blog", "Launchpad", "Governance"]
     const logoState = window.innerWidth >= 900 ? false : true
     const [menuItems, setMenuItems] = useState<string[]>(initialState)
     const [changeLogo, setChangeLogo] = useState<boolean>(logoState)
+    const [open, setOpen] = useState<boolean>(false)
     const [scroll, setScroll] = useState<boolean>(false)
-    const { account } = useActiveWeb3React()
+    const { account, chainId } = useActiveWeb3React()
+    const tokenBalance = useFetchBalance()
+    const networkInfo = getNetworkInfo(Number(chainId))
 
     const updateMenuItems = () => {
         if (window.innerWidth >= 1200) {
@@ -62,77 +68,88 @@ function NavBar() {
     }, [])
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <StyledAppBar
-                position="fixed"
-                scroll={scroll.toString()}
-            >
-                <StyledToolbar>
-                    <Box sx={{
-                        display: 'flex',
-                        alignItems: "center",
-                        justifyContent: "center"
-                    }}>
-                        <SidebarMenu />
+        <>
+            <Box sx={{ flexGrow: 1 }}>
+                <StyledAppBar
+                    position="fixed"
+                    scroll={scroll.toString()}
+                >
+                    <StyledToolbar>
+                        <Box sx={{
+                            display: 'flex',
+                            alignItems: "center",
+                            justifyContent: "center"
+                        }}>
+                            <SidebarMenu />
 
-                        <ImgContainer href="/">
-                            {
-                                !changeLogo ? <LogoImg src="./images/logo.svg" /> : <LogoImg src="./images/mini-logo.svg" />
-                            }
-                        </ImgContainer>
-                    </Box>
+                            <ImgContainer href="/">
+                                {
+                                    !changeLogo ? <LogoImg src="./images/logo.svg" /> : <LogoImg src="./images/mini-logo.svg" />
+                                }
+                            </ImgContainer>
+                        </Box>
 
-                    <Box sx={{
-                        display: 'flex',
-                        alignItems: "center",
-                        justifyContent: "center"
-                    }}>
-                        <NavMenu>
-                            <NavLinks to="/trade">
-                                <NavItem>Trade</NavItem>
-                            </NavLinks>
+                        <Box sx={{
+                            display: 'flex',
+                            alignItems: "center",
+                            justifyContent: "center"
+                        }}>
+                            <NavMenu>
+                                <NavLinks to="/trade">
+                                    <NavItem>Trade</NavItem>
+                                </NavLinks>
 
-                            <NavLinks to="/funds">
-                                <NavItem>Hedge Funds</NavItem>
-                            </NavLinks>
+                                <NavLinks to="/funds">
+                                    <NavItem>Hedge Funds</NavItem>
+                                </NavLinks>
 
-                            <NavLinks to="/farms">
-                                <NavItem>Farms</NavItem>
-                            </NavLinks>
+                                <NavLinks to="/farms">
+                                    <NavItem>Farms</NavItem>
+                                </NavLinks>
 
-                            <NavLinks to="/pools">
-                                <NavItem>Pools</NavItem>
-                            </NavLinks>
+                                <NavLinks to="/pools">
+                                    <NavItem>Pools</NavItem>
+                                </NavLinks>
 
-                            <NavLinks to="/nfts">
-                                <NavItem>NFT's</NavItem>
-                            </NavLinks>
+                                <NavLinks to="/nfts">
+                                    <NavItem>NFT's</NavItem>
+                                </NavLinks>
 
-                            <NavLinks to="/launchpad">
-                                <NavItem sx={{ display: { md: 'none', lg: "block" } }}>
-                                    Launchpad
+                                <NavLinks to="/launchpad">
+                                    <NavItem sx={{ display: { md: 'none', lg: "block" } }}>
+                                        Launchpad
+                                    </NavItem>
+                                </NavLinks>
+
+                                <NavLinks to="/governance">
+                                    <NavItem sx={{ display: { md: 'none', lg: "block" } }}>Governance</NavItem>
+                                </NavLinks>
+
+                                <NavItem>
+                                    <DropdownMenu title="More" menuItems={menuItems} />
                                 </NavItem>
-                            </NavLinks>
+                            </NavMenu>
 
-                            <NavLinks to="/governance">
-                                <NavItem sx={{ display: { md: 'none', lg: "block" } }}>Governance</NavItem>
-                            </NavLinks>
+                            {
+                                account ? <VariantButton width="180px" onClick={() => setOpen(true)}>
+                                    <WalletIcon src="./images/wallets/metamask.svg" />
+                                    <span>{truncateWalletAddress(account)}</span>
+                                </VariantButton> : <UnlockButton isVariant={true} />
+                            }
+                        </Box>
+                    </StyledToolbar>
+                </StyledAppBar>
+            </Box >
 
-                            <NavItem>
-                                <DropdownMenu title="More" menuItems={menuItems} />
-                            </NavItem>
-                        </NavMenu>
-
-                        {
-                            account ? <VariantButton width="180px">
-                                <WalletIcon src="./images/metamask.svg" />
-                                <span>{truncateWalletAddress(account)}</span>
-                            </VariantButton> : <UnlockButton isVariant={true} />
-                        }
-                    </Box>
-                </StyledToolbar>
-            </StyledAppBar>
-        </Box >
+            <AccountDialog
+                open={open}
+                handleClose={() => setOpen(false)}
+                account={account}
+                networkName={networkInfo.networkName}
+                mainToken={networkInfo.mainToken}
+                balance={tokenBalance}
+            />
+        </>
     );
 }
 

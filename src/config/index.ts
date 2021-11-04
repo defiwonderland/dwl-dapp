@@ -12,6 +12,18 @@ export const BASE_SCAN_URLS = {
     [ChainId.MATIC_TESTNET]: 'https://mumbai.polygonscan.com',
 }
 
+export const NETWORK_NAME = {
+    [ChainId.MATIC]: 'Polygon',
+    [ChainId.KOVAN]: 'Ethereum',
+    [ChainId.MATIC_TESTNET]: 'Polygon',
+}
+
+export const NETWORK_MAIN_TOKEN = {
+    [ChainId.MATIC]: 'MATIC',
+    [ChainId.KOVAN]: 'ETH',
+    [ChainId.MATIC_TESTNET]: 'MATIC',
+}
+
 export const BASE_SUSHISWAP_URL = "https://app.sushi.com"
 
 export const HEX_CHAIN_ID = {
