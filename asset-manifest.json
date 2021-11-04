@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "./static/css/main.4182ea4e.chunk.css",
-    "main.js": "./static/js/main.35b7af47.chunk.js",
-    "main.js.map": "./static/js/main.35b7af47.chunk.js.map",
+    "main.js": "./static/js/main.21fe2d0b.chunk.js",
+    "main.js.map": "./static/js/main.21fe2d0b.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.f6a9ce73.js",
     "runtime-main.js.map": "./static/js/runtime-main.f6a9ce73.js.map",
-    "static/js/2.25cb2948.chunk.js": "./static/js/2.25cb2948.chunk.js",
-    "static/js/2.25cb2948.chunk.js.map": "./static/js/2.25cb2948.chunk.js.map",
+    "static/js/2.67f80f69.chunk.js": "./static/js/2.67f80f69.chunk.js",
+    "static/js/2.67f80f69.chunk.js.map": "./static/js/2.67f80f69.chunk.js.map",
     "index.html": "./index.html",
     "static/css/main.4182ea4e.chunk.css.map": "./static/css/main.4182ea4e.chunk.css.map",
-    "static/js/2.25cb2948.chunk.js.LICENSE.txt": "./static/js/2.25cb2948.chunk.js.LICENSE.txt",
+    "static/js/2.67f80f69.chunk.js.LICENSE.txt": "./static/js/2.67f80f69.chunk.js.LICENSE.txt",
     "static/media/1.1e8ab0bd.png": "./static/media/1.1e8ab0bd.png",
     "static/media/2.ff3b9682.png": "./static/media/2.ff3b9682.png",
     "static/media/3.672e573a.png": "./static/media/3.672e573a.png",
@@ -23,24 +23,17 @@
     "static/media/Union.83d3afd6.svg": "./static/media/Union.83d3afd6.svg",
     "static/media/index.css": "./static/media/bg.3c3f9b70.png",
     "static/media/cap.ea95a979.png": "./static/media/cap.ea95a979.png",
-    "static/media/decentralised-img.05de410d.png": "./static/media/decentralised-img.05de410d.png",
     "static/media/dink-bg.4af26cb0.png": "./static/media/dink-bg.4af26cb0.png",
     "static/media/dink.1bd532d7.png": "./static/media/dink.1bd532d7.png",
-    "static/media/earn-image.43493ad3.png": "./static/media/earn-image.43493ad3.png",
     "static/media/fund.61a57adc.svg": "./static/media/fund.61a57adc.svg",
     "static/media/inner-header.b9f0d9b8.png": "./static/media/inner-header.b9f0d9b8.png",
-    "static/media/invest-image.e1d3bd86.png": "./static/media/invest-image.e1d3bd86.png",
-    "static/media/manage-image.dd7fbf16.png": "./static/media/manage-image.dd7fbf16.png",
     "static/media/mouse-running.a0ff8005.png": "./static/media/mouse-running.a0ff8005.png",
-    "static/media/mouse.cccb980a.png": "./static/media/mouse.cccb980a.png",
-    "static/media/phone-banner.92024835.png": "./static/media/phone-banner.92024835.png",
-    "static/media/step-arrow.f8aa8711.svg": "./static/media/step-arrow.f8aa8711.svg",
-    "static/media/step-bg.9444c89d.png": "./static/media/step-bg.9444c89d.png"
+    "static/media/mouse.cccb980a.png": "./static/media/mouse.cccb980a.png"
   },
   "entrypoints": [
     "static/js/runtime-main.f6a9ce73.js",
-    "static/js/2.25cb2948.chunk.js",
+    "static/js/2.67f80f69.chunk.js",
     "static/css/main.4182ea4e.chunk.css",
-    "static/js/main.35b7af47.chunk.js"
+    "static/js/main.21fe2d0b.chunk.js"
   ]
 }
