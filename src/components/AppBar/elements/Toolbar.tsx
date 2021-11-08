@@ -40,7 +40,7 @@ export const StyledIconButton = styled(IconButton)(({ theme }) => ({
     },
 }))
 
-export const ImgContainer = styled('a')({
+export const ImgContainer = styled(NavLink)({
     display: "flex",
     fontSize: "1.25rem",
     alignItems: "center",

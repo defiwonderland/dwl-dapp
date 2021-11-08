@@ -82,7 +82,7 @@ function NavBar() {
                         }}>
                             <SidebarMenu />
 
-                            <ImgContainer href="/">
+                            <ImgContainer to="/">
                                 {
                                     !changeLogo ? <LogoImg src="./images/logo.svg" /> : <LogoImg src="./images/mini-logo.svg" />
                                 }
