@@ -18,7 +18,7 @@ const Stats = () => {
                         <div>
                             <StyledH2>The Highest <br /> Earnings Available <br /> On The Blockchain</StyledH2>
                             <Spacing />
-                            <StyledText>DeFi Link is trusted by People, DAO’s,<br />
+                            <StyledText>Defi Wonderland is trusted by People, DAO’s,<br />
                                 Enterprises &amp; Businesses alike to work <br />
                                 smarter, not harder.
                             </StyledText>

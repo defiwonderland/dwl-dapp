@@ -22,7 +22,7 @@ const HorizontalContent = () => {
                     <Grid container item sm={12} md={6} alignItems="center" justifyContent="center">
                         <div>
                             <StyledH2>Build Passive <br /> Wealth with Crypto</StyledH2>
-                            <StyledText>DeFi Link makes it easy to make your Crypto <br />
+                            <StyledText>Defi Wonderland makes it easy to make your Crypto <br />
                                 or Stablecoins work for you.
                             </StyledText>
                             <CenterConatiner>
