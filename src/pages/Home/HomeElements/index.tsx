@@ -1,5 +1,5 @@
 import { styled } from "@mui/system";
-import bg from "../../../assets/images/home/dink-bg.png"
+import bg from "../../../assets/images/home/wndr-bg.png"
 
 export const StyledImgContent = styled("img")(({ theme }) => ({
     maxWidth: "75%",

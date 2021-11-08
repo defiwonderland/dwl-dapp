@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { StyledH2, StyledText } from "../../../components/Text";
 import { StyledImgContent, CommunityContainer } from "../HomeElements";
-import dink from "../../../assets/images/home/dink.png"
+import wndr from "../../../assets/images/home/wndr.png"
 import { PrimaryButton } from "../../../components/Button";
 
 const Community = () => {
@@ -13,7 +13,7 @@ const Community = () => {
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container>
                     <Grid container item sm={12} alignItems="center" justifyContent="center">
-                        <StyledImgContent src={dink} />
+                        <StyledImgContent src={wndr} />
                         <CommunityContainer>
                             <StyledH2 style={{ color: "#ffffff", textAlign: "center" }}>Governed By The Wonderland Community</StyledH2>
                             <TextContainer>

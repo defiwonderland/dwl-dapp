@@ -7,7 +7,7 @@ import Community from "./Community"
 import BottomImg from "./BottomImg"
 
 function Home(): JSX.Element {
-    const desc1 = "Defi Wonderland is committed to protecting and rebuilding forests and our beautiful planet. \n A percentage of all platform revenues is directed to our Planet Earth Fund, which is \n governed by our community DINK token."
+    const desc1 = "Defi Wonderland is committed to protecting and rebuilding forests and our beautiful planet. \n A percentage of all platform revenues is directed to our Planet Earth Fund, which is \n governed by our community $WNDR token."
     const desc2 = "No registration required to start. Simply connect \n your wallet and follow the white \n rabbit into DeFi Wonderland!"
 
     return (
