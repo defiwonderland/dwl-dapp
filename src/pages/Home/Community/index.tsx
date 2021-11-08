@@ -15,11 +15,11 @@ const Community = () => {
                     <Grid container item sm={12} alignItems="center" justifyContent="center">
                         <StyledImgContent src={dink} />
                         <CommunityContainer>
-                            <StyledH2 style={{ color: "#ffffff", textAlign: "center" }}>Governed By The Dink Community</StyledH2>
+                            <StyledH2 style={{ color: "#ffffff", textAlign: "center" }}>Governed By The Wonderland Community</StyledH2>
                             <TextContainer>
                                 <StyledText style={{ color: "#ffffff", textAlign: "center", lineHeight: "2" }}>
-                                    DINK token is our governance &amp; utility token.
-                                    DINK token holders have rights to propose network updates, new launchpad listings &amp;
+                                    $WNDR token is our governance &amp; utility token.
+                                    $WNDR token holders have rights to propose network updates, new launchpad listings &amp;
                                     pools, Planet Earth Fund allocation, and vote on adjusting Platform Parameters.
                                     Holders can also stake to earn more crypto and receive platform fees!
                                 </StyledText>
