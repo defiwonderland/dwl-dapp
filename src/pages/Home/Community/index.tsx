@@ -6,6 +6,7 @@ import { StyledH2, StyledText } from "../../../components/Text";
 import { StyledImgContent, CommunityContainer } from "../HomeElements";
 import wndr from "../../../assets/images/home/wndr.png"
 import { PrimaryButton } from "../../../components/Button";
+import { NavLink } from "react-router-dom";
 
 const Community = () => {
     return (
@@ -25,7 +26,9 @@ const Community = () => {
                                 </StyledText>
                             </TextContainer>
 
-                            <PrimaryButton style={{ width: "200px" }}>Explore Governance</PrimaryButton>
+                            <NavLink to="/governance" style={{ textDecoration: "none" }}>
+                                <PrimaryButton style={{ width: "200px" }}>Explore Governance</PrimaryButton>
+                            </NavLink>
                         </CommunityContainer>
                     </Grid>
                 </Grid>
