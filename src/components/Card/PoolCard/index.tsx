@@ -28,6 +28,7 @@ const PoolCard: React.FC<PoolCardProps> = ({ pools }) => {
                                 <TableCell align="left">APR</TableCell>
                                 <TableCell align="left">TOTAL STAKED</TableCell>
                                 <TableCell align="left">EARNEND</TableCell>
+                                <TableCell align="left">Status</TableCell>
                                 <TableCell align="left" />
                             </TableRow>
                         </StyledTableHead>

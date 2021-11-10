@@ -28,6 +28,7 @@ import UnlockButton from "../../UnlockButton"
 import StakeDialog from "../../Dialog/StakeDialog"
 import { Farm } from "../types"
 import CustomSnackbar from "../../Snackbar"
+import { getSlpUrl } from "../../../utils/getChainInfo"
 
 const chainId = Number(process.env.REACT_APP_CHAIN_ID)
 
@@ -163,7 +164,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
                 }}>
                     <StakeButton
                         onClick={() => setOpenWithdrawDialog(true)}
-                        disabled={Number(farm.stakeTokenNumber) === 0 || isFarmEnded}
+                        disabled={Number(farm.stakeTokenNumber) === 0}
                     > -
                     </StakeButton>
                     <StakeButton
@@ -200,16 +201,16 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
                             alignItems: "center",
                             justifyContent: "center",
                         }}>
-                            <Box sx={{
-                                display: 'flex',
-                                alignItems: "center",
-                                justifyContent: "center",
-                            }}>
-                                <TagImg src={tagImg} />
-                                <CardTitle>Core</CardTitle>
-                            </Box>
+                            <TagImg src={tagImg} />
+                            <CardTitle>Core</CardTitle>
+                        </Box>
 
-                            <FarmTag>40X</FarmTag>
+                        <Box sx={{
+                            display: 'flex',
+                            alignItems: "center",
+                            justifyContent: "center",
+                        }}>
+                            <FarmTag>{isFarmEnded ? "Finished" : "Live"}</FarmTag>
                         </Box>
                     </Box>
 
@@ -286,9 +287,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
                             <CardText mb="0px" mt="0px" mr="5px">Total Liquidity:</CardText>
                             <CardText fontWeight={500} mt="0px" mb="0px">${farm.farmEarnings?.tvl ? farm.farmEarnings?.tvl : "0.000"}</CardText>
                         </Box>
-                        <LinkEnternal text={`Get ${farm.stakeToken.symbol} SLP`} href="https://www.google.com" />
+                        <LinkEnternal text={`Get ${farm.stakeToken.symbol} SLP`} href={getSlpUrl(chainId, farm.stakeToken.symbol)} />
                         <LinkEnternal text="View Contract" href={getAddressOnScan(chainId, stakeTokenAddress)} />
-                        <LinkEnternal text="See Pair Info" href="https://www.google.com" />
                     </Box>
                 </Collapse>
             </StyledCard >

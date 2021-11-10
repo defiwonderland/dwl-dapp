@@ -156,7 +156,7 @@ const PoolDetails: React.FC<PoolDetailsProps> = ({ pool }) => {
                 <StakeButton
                     color="inherit"
                     onClick={() => setOpenWithdrawDialog(true)}
-                    disabled={Number(pool.stakeTokenNumber) === 0 || isPoolEnded}
+                    disabled={Number(pool.stakeTokenNumber) === 0}
 
                 > -
                 </StakeButton>
@@ -168,7 +168,7 @@ const PoolDetails: React.FC<PoolDetailsProps> = ({ pool }) => {
             </Box>
         }
     } else {
-        comp = <UnlockButton isVariant={true} minheight="30px" width="200px" />
+        comp = <UnlockButton isVariant={true} minheight="30px" width="200px" textcolor="#FFFFFF" />
     }
 
     return (
@@ -207,7 +207,10 @@ const PoolDetails: React.FC<PoolDetailsProps> = ({ pool }) => {
                     <CardText fontWeight={400}>${pool.poolEarnings ? pool.poolEarnings?.tvl : "0.000"}</CardText>
                 </TableCell>
                 <TableCell align="left">
-                    <CardText fontWeight={400}>{pool.poolEarnings ? `${pool.rewards?.toFixed(3)} ${pool.rewardToken.symbol}` : `0.000 ${pool.rewardToken.symbol}`}</CardText>
+                    <CardText fontWeight={400}>{pool.rewards ? `${pool.rewards?.toFixed(3)} ${pool.rewardToken.symbol}` : `0.000 ${pool.rewardToken.symbol}`}</CardText>
+                </TableCell>
+                <TableCell align="left">
+                    <CardText fontWeight={400}>{isPoolEnded ? "Finished" : "Live"}</CardText>
                 </TableCell>
                 <TableCell align="right">
                     {account ?

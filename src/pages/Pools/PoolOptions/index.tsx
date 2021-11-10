@@ -32,7 +32,7 @@ const PoolOptions: React.FC = () => {
     const comp3 = <CustomTab
         value={poolStatus}
         onChange={(event, newValue) => setPoolStatus(newValue)}
-        labelText={["Active", "Inactive"]}
+        labelText={["Live", "Finished"]}
         smbgcolor="#a2afad"
     />
 

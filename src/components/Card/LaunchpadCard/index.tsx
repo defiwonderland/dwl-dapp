@@ -108,7 +108,15 @@ const LaunchpadCard: React.FC<LaunchpadCardProps> = ({ ido }) => {
                     </Box>
 
                     <Box sx={{ margin: "20px 0" }}>
-                        <CardText mb="0px" mt="0px" mr="5px">{ido.id.toUpperCase()} IDO Sales Progression: </CardText>
+                        <Box sx={{
+                            display: 'flex',
+                            alignItems: "center",
+                            justifyContent: "space-between"
+                        }}>
+                            <CardText mb="5px" mt="0px" mr="5px">{ido.id.toUpperCase()} IDO Sales Progression: </CardText>
+                            <CardText mb="5px" mt="0px">{Number((1 - Number(ido.remainingTokens) / getSalesAmount(ido, chainId)) * 100).toFixed(0)}%</CardText>
+                        </Box>
+
                         <CustomProgressBar value={ido.remainingTokens ? (1 - Number(ido.remainingTokens) / getSalesAmount(ido, chainId)) * 100 : 0} />
                     </Box>
 
@@ -165,7 +173,7 @@ const LaunchpadCard: React.FC<LaunchpadCardProps> = ({ ido }) => {
                             margin: "10px 0"
                         }}>
                             <CardText mb="0px" mt="0px" mr="5px">Total IDO Tokens: </CardText>
-                            <CardText fontWeight={500} mt="0px" mb="0px">{numeral(ido.salesAmount).format("0,0")} {ido.id.toUpperCase()}</CardText>
+                            <CardText fontWeight={500} mt="0px" mb="0px">{numeral(getSalesAmount(ido, chainId)).format("0,0")} {ido.id.toUpperCase()}</CardText>
                         </Box>
 
                         <LinkEnternal text="View Website" href={ido.projectSiteUrl} />

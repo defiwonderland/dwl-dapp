@@ -21,7 +21,7 @@ export const FarmTag = styled('div')(({ theme }) => ({
     color: "#FFFFFF",
     minWidth: "50px",
     textAlign: "center",
-    padding: "3px 0",
+    padding: "3px",
     marginLeft: "10px",
 
     [theme.breakpoints.down("md")]: {
