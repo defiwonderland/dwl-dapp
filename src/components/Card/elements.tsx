@@ -122,7 +122,7 @@ export const NormalText = styled(StyledText)(({ theme }) => ({
 
 export const StakeButton = styled(StyledIconButton)<{ color?: string }>(({ theme, color }) => ({
     color: `${color ? color : theme.palette.text.primary}`,
-    fontSize: "16px",
+    fontSize: "20px",
     border: `2px solid ${theme.palette.primary.main}`,
     margin: "0 5px",
 
@@ -133,6 +133,6 @@ export const StakeButton = styled(StyledIconButton)<{ color?: string }>(({ theme
     },
 
     ":disabled": {
-        color: `${color ? color : theme.palette.text.primary}`
+        color: "#DeDeDe"
     }
 }))
