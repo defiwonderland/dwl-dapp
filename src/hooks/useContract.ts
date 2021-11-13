@@ -6,13 +6,15 @@ import { getContract } from "../utils/getContract"
 
 // Addresses
 import {
-    getBonusRewardAddress
+    getBonusRewardAddress,
+    getWonderVerseAddress
 } from "../utils/addressHelpers"
 
 //ABI
 import bonusRewardABI from "../config/abi/bonusReward.json"
 import erc20ABI from "../config/abi/erc20.json"
 import idoABI from "../config/abi/ido.json"
+import wonderVerseABI from "../config/abi/wonderverse.json"
 
 const chainId = Number(process.env.REACT_APP_CHAIN_ID)
 
@@ -44,4 +46,8 @@ export const useBonusRewardContract = () => {
 
 export const useIdoContract = (address: string) => {
     return useContract(address, idoABI)
+}
+
+export const useWonderVerseContract = () => {
+    return useContract(getWonderVerseAddress(chainId), wonderVerseABI)
 }

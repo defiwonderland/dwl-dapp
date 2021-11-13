@@ -56,6 +56,10 @@ const SidebarMenu = () => {
                     <StyledSidebarMenuItem onClick={handleClose}>NFT's</StyledSidebarMenuItem>
                 </SidebarLinks>
 
+                <SidebarLinks to="/wonderverse">
+                    <StyledSidebarMenuItem onClick={handleClose}>Wonderverse</StyledSidebarMenuItem>
+                </SidebarLinks>
+
                 <SidebarLinks to="/launchpad">
                     <StyledSidebarMenuItem onClick={handleClose}>Launchpad</StyledSidebarMenuItem>
                 </SidebarLinks>

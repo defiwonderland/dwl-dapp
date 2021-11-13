@@ -9,6 +9,7 @@ import Nfts from "./pages/Nfts"
 import Launchpad from "./pages/Launchpad"
 import Governance from "./pages/Governance"
 import ScrollToTop from "./utils/scrollToTop"
+import Wonderverse from "./pages/Wonderverse"
 
 function Routes(): JSX.Element {
     return (
@@ -23,6 +24,7 @@ function Routes(): JSX.Element {
                 <Route exact strict path="/nfts" component={Nfts} />
                 <Route exact strict path="/launchpad" component={Launchpad} />
                 <Route exact strict path="/governance" component={Governance} />
+                <Route exact strict path="/wonderverse" component={Wonderverse} />
                 <Redirect to="/" />
             </Switch>
         </Fragment>

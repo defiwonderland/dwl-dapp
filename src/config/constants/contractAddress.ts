@@ -18,6 +18,12 @@ const contractAddresses = {
         [ChainId.KOVAN]: '0xeCE41106e5ADc5A1671Efb976bA69212B213174c',
         [ChainId.MATIC_TESTNET]: "0x0d426169314cbe5D27a7926E85adEf467fcCa7B1"
     },
+
+    wonderVerse: {
+        [ChainId.MATIC]: "",
+        [ChainId.KOVAN]: '0x380810E78ae4D9b8f243bD728a5569030D1E4dE3',
+        [ChainId.MATIC_TESTNET]: ""
+    }
 }
 
 export default contractAddresses

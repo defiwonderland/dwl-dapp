@@ -55,11 +55,16 @@ const Footer = () => {
             },
             {
                 id: "004",
+                text: "Wonderverse",
+                link: "/wonderverse"
+            },
+            {
+                id: "005",
                 text: "Launchpad",
                 link: "/launchpad"
             },
             {
-                id: "005",
+                id: "006",
                 text: "Governance",
                 link: "/governance"
             },
@@ -176,7 +181,7 @@ const Footer = () => {
                                     <Grid container item sm={12} md={6}>
                                         <ul style={{ width: "100%" }}>
                                             {
-                                                categoryLinks.content.slice(3, 5).map(item => (
+                                                categoryLinks.content.slice(3, 6).map(item => (
                                                     <FooterLinkItems key={item.id}>
                                                         <FooterLink to={item.link}>{item.text}</FooterLink>
                                                     </FooterLinkItems>

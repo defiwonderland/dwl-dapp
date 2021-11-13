@@ -11,3 +11,8 @@ body {
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
 }
+
+textarea {
+   font-family: inherit;
+   font-size: inherit;
+}

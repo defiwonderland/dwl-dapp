@@ -1,0 +1,16 @@
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import snackbarReducer from "./snackbar/reducer"
+import { useDispatch } from 'react-redux'
+
+const store = configureStore({
+    reducer: {
+        snackbar: snackbarReducer
+    },
+    middleware: [...getDefaultMiddleware({ thunk: true })]
+})
+
+export type AppDispatch = typeof store.dispatch
+export type AppState = ReturnType<typeof store.getState>
+export const useAppDispatch = () => useDispatch()
+
+export default store

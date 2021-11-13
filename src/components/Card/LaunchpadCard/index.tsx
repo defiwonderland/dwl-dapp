@@ -11,7 +11,7 @@ import {
 import { Box } from "@mui/system"
 import { ExpandButton } from "../../Button"
 import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md"
-import { useFetchBalance } from "../../../hooks/useFetchBalance"
+import { useFetchBalance } from "../../../hooks/useTokenBalance"
 import useActiveWeb3React from "../../../hooks/useActiveWeb3React"
 import IdoDialog from "../../Dialog/IdoDialog"
 import Collapse from '@mui/material/Collapse';

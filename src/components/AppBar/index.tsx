@@ -10,7 +10,7 @@ import {
     NavLinks,
     WalletIcon
 } from './elements/Toolbar';
-import { useFetchBalance } from '../../hooks/useFetchBalance';
+import { useFetchBalance } from '../../hooks/useTokenBalance';
 import DropdownMenu from './components/DropdownMenu';
 import SidebarMenu from './components/SidebarMenu';
 import UnlockButton from '../UnlockButton';
@@ -21,7 +21,7 @@ import AccountDialog from '../Dialog/AccountDialog'
 import { getNetworkInfo } from '../../utils/getChainInfo';
 
 function NavBar() {
-    const initialState = window.innerWidth >= 1200 ? ["Info", "Contact", "Documents", "Blog"] : ["Info", "Contact", "Documents", "Blog", "Launchpad", "Governance"]
+    const initialState = window.innerWidth >= 1200 ? ["Info", "Contact", "Documents", "Blog"] : ["Wonderverse", "Launchpad", "Governance", "Info", "Contact", "Documents", "Blog"]
     const logoState = window.innerWidth >= 900 ? false : true
     const [menuItems, setMenuItems] = useState<string[]>(initialState)
     const [changeLogo, setChangeLogo] = useState<boolean>(logoState)
@@ -35,7 +35,7 @@ function NavBar() {
         if (window.innerWidth >= 1200) {
             setMenuItems(["Info", "Contact", "Documents", "Blog"])
         } else {
-            setMenuItems(["Info", "Contact", "Documents", "Blog", "Launchpad", "Governance"])
+            setMenuItems(["Wonderverse", "Launchpad", "Governance", "Info", "Contact", "Documents", "Blog"])
         }
     }
 
@@ -113,6 +113,12 @@ function NavBar() {
 
                                 <NavLinks to="/nfts">
                                     <NavItem>NFT's</NavItem>
+                                </NavLinks>
+
+                                <NavLinks to="/wonderverse">
+                                    <NavItem sx={{ display: { md: 'none', lg: "block" } }}>
+                                        Wonderverse
+                                    </NavItem>
                                 </NavLinks>
 
                                 <NavLinks to="/launchpad">

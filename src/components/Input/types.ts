@@ -5,4 +5,5 @@ export interface InputProps {
     startAdornment?: React.ReactNode,
     bgcolor?: string,
     textcolor?: string
+    margin?: string
 }

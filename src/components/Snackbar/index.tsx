@@ -84,22 +84,24 @@ const CustomSnackbar: React.FC<SnackbarProps> = ({
     }
 
     return (
-        <Snackbar
-            open={open}
-            autoHideDuration={6000}
-            onClose={handleClose}
-            anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
-            }}
-        >
-            <SnackbarContainer>
-                {comp}
-                <CloseButton onClick={handleClose} >
-                    <FaTimes />
-                </CloseButton>
-            </SnackbarContainer>
-        </Snackbar>
+        <>
+            <Snackbar
+                open={open}
+                autoHideDuration={6000}
+                onClose={handleClose}
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                }}
+            >
+                <SnackbarContainer>
+                    {comp}
+                    <CloseButton onClick={handleClose} >
+                        <FaTimes />
+                    </CloseButton>
+                </SnackbarContainer>
+            </Snackbar>
+        </>
     );
 }
 

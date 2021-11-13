@@ -21,6 +21,10 @@ export const getIdoAddress = (ido: IdoConfig, chainId: ChainId) => {
     return ido.idoAddress[chainId]
 }
 
+export const getWonderVerseAddress = (chainId: ChainId) => {
+    return contractAddresses.wonderVerse[chainId]
+}
+
 
 // get token addresses
 export const getTokenAddress = (token: string, chainId: ChainId) => {

@@ -1,20 +1,20 @@
 import React from "react"
-import TradeCard from "../../components/Card/TradeCard"
+import WonderverseHeader from "./WonderverseHeader"
 import { WidthWrapper, Wrapper } from "../../components/Layout"
-import { Box } from "@mui/system"
+import Mapbox from "./Map/Mapbox"
 
-const Trade: React.FC = () => {
+const Wonderverse: React.FC = () => {
     return (
         <section style={{ marginTop: "70px" }}>
+            <WonderverseHeader />
+
             <Wrapper>
                 <WidthWrapper>
-                    <Box>
-                        <TradeCard />
-                    </Box>
+                    <Mapbox />
                 </WidthWrapper>
             </Wrapper>
         </section>
     )
 }
 
-export default Trade
+export default Wonderverse

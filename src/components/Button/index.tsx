@@ -124,6 +124,7 @@ export const CopyButton = styled(Button)(({ theme }) => ({
     justifyContent: "center",
     borderRadius: "5px",
     border: `2px solid "#e9ecef"`,
+    cursor: "copy",
 
     '&:hover': {
         backgroundColor: "#e9ecef",

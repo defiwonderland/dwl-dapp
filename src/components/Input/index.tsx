@@ -3,9 +3,9 @@ import React from "react"
 import { StyledInput } from "./elements"
 import { InputProps } from "./types"
 
-const CustomInput: React.FC<InputProps> = ({ value, onChange, startAdornment, placeholder, textcolor, bgcolor }) => {
+const CustomInput: React.FC<InputProps> = ({ value, onChange, startAdornment, placeholder, textcolor, bgcolor, margin }) => {
     return (
-        <Box sx={{ width: "100%", margin: "10px" }}>
+        <Box sx={{ width: "100%", margin: `${margin ? margin : "10px"}` }}>
             <StyledInput
                 startAdornment={startAdornment}
                 placeholder={placeholder}
