@@ -39,6 +39,15 @@ const tokenInfo: TokenInfo = {
         decimals: 18
     },
 
+    "SUSHI": {
+        address: {
+            [ChainId.MATIC]: "",
+            [ChainId.KOVAN]: "0x9CB14d810403B40201A962acbdb2e2646779C20e",
+            [ChainId.MATIC_TESTNET]: ""
+        },
+        decimals: 18
+    },
+
     "BUB": {
         address: {
             [ChainId.MATIC]: "",

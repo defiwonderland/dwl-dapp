@@ -10,7 +10,7 @@ export const getBonusRewardAddress = (chainId: ChainId) => {
 }
 
 export const getMulticallAddress = (chainId: ChainId) => {
-    return contractAddresses.mulltiCall[chainId]
+    return contractAddresses.mullticall[chainId]
 }
 
 export const getPriceFeedAddress = (chainId: ChainId) => {
@@ -38,4 +38,8 @@ export const getWndrMaticAddress = (chainId: ChainId) => {
 
 export const getWndrEthAddress = (chainId: ChainId) => {
     return lpAddresses.wndr_eth[chainId]
+}
+
+export const getWndrSushiAddress = (chainId: ChainId) => {
+    return lpAddresses.wndr_sushi[chainId]
 }

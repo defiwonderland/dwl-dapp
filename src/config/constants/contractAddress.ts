@@ -7,7 +7,7 @@ const contractAddresses = {
         [ChainId.MATIC_TESTNET]: "0xb0FBe4C9aBddFE543906b600f6D258C446D866FC"
     },
 
-    mulltiCall: {
+    mullticall: {
         [ChainId.MATIC]: '',
         [ChainId.KOVAN]: '0xB507EFe0Cf59F6F820914cB7ada622718B552DaB',
         [ChainId.MATIC_TESTNET]: "0x08411ADd0b5AA8ee47563b146743C13b3556c9Cc"

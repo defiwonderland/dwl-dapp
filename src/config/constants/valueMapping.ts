@@ -1,4 +1,5 @@
 export const tokenMapping: { [key: string]: string } = {
     "matic-network": "MATIC",
-    "ethereum": "ETH"
+    "ethereum": "ETH",
+    "sushi": "SUSHI",
 }

@@ -3,6 +3,7 @@ import {
     getTokenAddress,
     getWndrEthAddress,
     getWndrMaticAddress,
+    getWndrSushiAddress
 } from "../../utils/addressHelpers";
 import { getTokenDecimals } from "../../utils/decimalHelpers";
 import { ChainId } from "..";
@@ -30,7 +31,20 @@ const farmDetails: FarmDetails = {
                 address: getTokenAddress("WNDR", chainId),
                 decimals: getTokenDecimals("WNDR")
             },
-        }
+        },
+        {
+            pid: 1,
+            stakeToken: {
+                symbol: 'WNDR-SUSHI',
+                address: getWndrSushiAddress(chainId),
+                decimals: 18
+            },
+            rewardToken: {
+                symbol: "WNDR",
+                address: getTokenAddress("WNDR", chainId),
+                decimals: getTokenDecimals("WNDR")
+            },
+        },
     ],
     [ChainId.MATIC_TESTNET]: [
         {
