@@ -23,7 +23,7 @@ import { VariantButton } from "../../Button";
 import { Pool } from "../types"
 import moment from "moment"
 import { getAddressOnScan } from "../../../utils/getChainInfo";
-import { useBonusRewardContract, useERC20 } from "../../../hooks/useContract"
+import { useBonusRewardContract, useTokenContract } from "../../../hooks/useContract"
 import { useBonusRewardAllowance } from "../../../hooks/useAllowance"
 import { useBonusRewardApprove } from "../../../hooks/useApprove"
 import { useTokenBalance } from "../../../hooks/useTokenBalance"
@@ -51,7 +51,7 @@ const PoolDetails: React.FC<PoolDetailsProps> = ({ pool }) => {
     const [openWithdrawDialog, setOpenWithdrawDialog] = useState(false)
     const [openDepositDialog, setOpenDepositDialog] = useState(false)
     const bonusRewardContract = useBonusRewardContract()
-    const stakeTokenContract = useERC20(stakeTokenAddress) as any
+    const stakeTokenContract = useTokenContract(stakeTokenAddress) as any
     const tokenBalance = useTokenBalance(stakeTokenContract, pool.stakeToken.decimals)
     const { onApprove } = useBonusRewardApprove(stakeTokenContract)
     const bonusRewardAllowance = new BigNumber(useBonusRewardAllowance(stakeTokenContract) || 0).toNumber()

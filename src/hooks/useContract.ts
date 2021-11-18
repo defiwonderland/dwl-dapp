@@ -4,17 +4,20 @@ import { ethers } from "ethers"
 import { Contract } from '@ethersproject/contracts'
 import { getContract } from "../utils/getContract"
 
+
 // Addresses
 import {
     getBonusRewardAddress,
-    getWonderVerseAddress
+    getWonderVerseAddress,
+    getMulticallAddress
 } from "../utils/addressHelpers"
 
 //ABI
-import bonusRewardABI from "../config/abi/bonusReward.json"
-import erc20ABI from "../config/abi/erc20.json"
-import idoABI from "../config/abi/ido.json"
-import wonderVerseABI from "../config/abi/wonderverse.json"
+import {ERC20_ABI,ERC20_BYTES32_ABI} from "../config/abi/erc20"
+import BONUS_REWARD_ABI from "../config/abi/bonusReward.json"
+import IDO_ABI from "../config/abi/ido.json"
+import WONDER_VERSE_ABI from "../config/abi/wonderverse.json"
+import multiCallAbi from '../config/abi/multicall.json'
 
 const chainId = Number(process.env.REACT_APP_CHAIN_ID)
 
@@ -36,18 +39,27 @@ export function useContract(
     }, [address, ABI, library, withSignerIfPossible, account])
 }
 
-export const useERC20 = (address: string) => {
-    return useContract(address, erc20ABI)
+export const useTokenContract = (address?: string, withSignerIfPossible?: boolean) => {
+    return useContract(address, ERC20_ABI, withSignerIfPossible)
+}
+
+export function useBytes32TokenContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {
+  return useContract(tokenAddress, ERC20_BYTES32_ABI, withSignerIfPossible)
 }
 
 export const useBonusRewardContract = () => {
-    return useContract(getBonusRewardAddress(chainId), bonusRewardABI)
+    return useContract(getBonusRewardAddress(chainId), BONUS_REWARD_ABI)
 }
 
 export const useIdoContract = (address: string) => {
-    return useContract(address, idoABI)
+    return useContract(address, IDO_ABI)
 }
 
 export const useWonderVerseContract = () => {
-    return useContract(getWonderVerseAddress(chainId), wonderVerseABI)
+    return useContract(getWonderVerseAddress(chainId), WONDER_VERSE_ABI)
+}
+
+
+export function useMulticallContract(): Contract | null {
+  return useContract(getMulticallAddress(chainId), multiCallAbi, false)
 }

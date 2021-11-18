@@ -20,7 +20,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import CustomSnackbar from '../../../components/Snackbar';
 import { useGetWonderVerseDetails, useFetchWonderVerseBaseInfo } from '../../../hooks/useFetchWonderVerse';
 import { getTokenAddress, getWonderVerseAddress } from '../../../utils/addressHelpers';
-import { useERC20 } from '../../../hooks/useContract';
+import { useTokenContract } from '../../../hooks/useContract';
 import { BigNumber } from 'bignumber.js';
 import { useWndrAllowance } from '../../../hooks/useAllowance';
 import { useTokenBalance } from '../../../hooks/useTokenBalance';
@@ -85,7 +85,7 @@ const Mapbox: React.FC = () => {
     const wndrAddress = getTokenAddress("WNDR", chainId)
     const wndrDecimals = getTokenDecimals("WNDR")
     const wonderVerseAddress = getWonderVerseAddress(chainId)
-    const wndrContract = useERC20(wndrAddress) as any
+    const wndrContract = useTokenContract(wndrAddress) as any
     const wndrAllowance = new BigNumber(useWndrAllowance(wndrContract, wonderVerseAddress) || 0).toNumber()
     const wndrBalance = useTokenBalance(wndrContract, wndrDecimals) || 0
 

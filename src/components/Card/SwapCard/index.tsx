@@ -9,11 +9,13 @@ import { PrimaryButton } from "../../Button";
 import useActiveWeb3React from "../../../hooks/useActiveWeb3React";
 import { CustomImg } from "../elements";
 import UnlockButton from "../../UnlockButton";
+import {useDerivedSwapInfo} from "./hooks"
 
-const TradeCard: React.FC = () => {
+const SwapCard: React.FC = () => {
     const { account } = useActiveWeb3React()
-    const [fromValue, setFromValue] = useState(0)
-    const [toValue, setToValue] = useState(0)
+    const [fromValue, setFromValue] = useState<string>('0')
+    const [toValue, setToValue] = useState<string>('0');
+    const swapState = useDerivedSwapInfo(fromValue);
 
     return (
         <StyledBox>
@@ -53,7 +55,7 @@ const TradeCard: React.FC = () => {
                         </Box>
 
                         <InputContainer>
-                            <TradeInput disableUnderline={true} value={fromValue} />
+                            <TradeInput disableUnderline={true} value={fromValue} onChange={(e:any)=>setFromValue(e.target.value)}/>
                         </InputContainer>
                     </Box>
                 </StyledCard>
@@ -94,4 +96,4 @@ const TradeCard: React.FC = () => {
     )
 }
 
-export default TradeCard
+export default SwapCard

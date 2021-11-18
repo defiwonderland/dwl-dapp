@@ -15,7 +15,7 @@ import { Box } from "@mui/system"
 import tagImg from "../../../assets/images/farms/ic1.png"
 import BigNumber from "bignumber.js"
 import useActiveWeb3React from "../../../hooks/useActiveWeb3React"
-import { useBonusRewardContract, useERC20 } from "../../../hooks/useContract"
+import { useBonusRewardContract, useTokenContract } from "../../../hooks/useContract"
 import { useBonusRewardAllowance } from "../../../hooks/useAllowance"
 import { useBonusRewardApprove } from "../../../hooks/useApprove"
 import { useTokenBalance } from "../../../hooks/useTokenBalance"
@@ -46,7 +46,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
     const [openWithdrawDialog, setOpenWithdrawDialog] = useState(false)
     const [openDepositDialog, setOpenDepositDialog] = useState(false)
     const bonusRewardContract = useBonusRewardContract()
-    const stakeTokenContract = useERC20(stakeTokenAddress) as any
+    const stakeTokenContract = useTokenContract(stakeTokenAddress) as any
     const tokenBalance = useTokenBalance(stakeTokenContract, farm.stakeToken.decimals)
     const { onApprove } = useBonusRewardApprove(stakeTokenContract)
     const bonusRewardAllowance = new BigNumber(useBonusRewardAllowance(stakeTokenContract) || 0).toNumber()

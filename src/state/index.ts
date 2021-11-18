@@ -2,11 +2,15 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import snackbarReducer from "./snackbar/reducer"
 import swapReducer from './swap/reducer'
 import { useDispatch } from 'react-redux'
+import multicallReducer from './multicall/reducer'
+import blockReducer from './block'
 
 const store = configureStore({
     reducer: {
         snackbar: snackbarReducer,
-        swap: swapReducer
+        swap: swapReducer,
+        multicall: multicallReducer,
+        block: blockReducer,
     },
     middleware: [...getDefaultMiddleware({ thunk: true })]
 })
