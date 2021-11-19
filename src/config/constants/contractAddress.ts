@@ -1,4 +1,5 @@
 import { ChainId } from ".."
+import{MULTICALL2_ADDRESS} from '@sushiswap/sdk'
 
 const contractAddresses = {
     bonusReward: {

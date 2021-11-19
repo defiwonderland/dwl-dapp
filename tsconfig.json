@@ -21,6 +21,8 @@
     "jsx": "react-jsx",
     "suppressImplicitAnyIndexErrors": true,
     "downlevelIteration": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
   },
   "include": [
     "src"

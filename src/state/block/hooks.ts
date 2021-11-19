@@ -4,8 +4,6 @@ import { useAppDispatch } from '../index'
 import useIsWindowVisible from '../../hooks/useIsWindowVisible'
 import { simpleRpcProvider } from '../../utils/providers'
 import { setBlock } from '.'
-
-
 export interface BlockState {
   currentBlock: number
   initialBlock: number

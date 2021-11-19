@@ -1,6 +1,7 @@
 import { Interface, FunctionFragment } from '@ethersproject/abi'
 import { BigNumber } from '@ethersproject/bignumber'
 import { Contract } from '@ethersproject/contracts'
+import { FormControlUnstyledContext } from '@mui/core'
 import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
@@ -170,6 +171,7 @@ export function useSingleContractMultipleData(
 ): CallState[] {
   const fragment = useMemo(() => contract?.interface?.getFunction(methodName), [contract, methodName])
 
+
   const calls = useMemo(
     () =>
       contract && fragment && callInputs && callInputs.length > 0
@@ -183,9 +185,11 @@ export function useSingleContractMultipleData(
     [callInputs, contract, fragment],
   )
 
+
   const results = useCallsData(calls, options)
 
   const { currentBlock } = useBlock()
+
 
   return useMemo(() => {
     return results.map((result) => toCallState(result, contract?.interface, fragment, currentBlock))
@@ -208,6 +212,8 @@ export function useMultipleContractSingleData(
     [callInputs, contractInterface, fragment],
   )
 
+  console.log("callData>>>>>>>>",callData)
+
   const calls = useMemo(
     () =>
       fragment && addresses && addresses.length > 0 && callData
@@ -223,7 +229,11 @@ export function useMultipleContractSingleData(
     [addresses, callData, fragment],
   )
 
+   console.log("calls>>>>>>>>",calls, options)
+
   const results = useCallsData(calls, options)
+
+  console.log("resultes", results)
 
   const { currentBlock } = useBlock()
 

@@ -4,9 +4,11 @@ import Routes from './routes';
 import NavBar from './components/AppBar';
 import Footer from './components/Footer';
 import useEagerConnect from './hooks/useEagerConnect';
+import { usePollBlockNumber } from "./state/block/hooks";
 
 function App() {
   useEagerConnect()
+  usePollBlockNumber()
 
   return (
     <Router>
