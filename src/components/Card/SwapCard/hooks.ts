@@ -1,11 +1,9 @@
-import { Currency, CurrencyAmount, NATIVE, WNATIVE, JSBI, Percent, Token, Trade as V2Trade, TradeType, WNATIVE_ADDRESS, ChainId} from '@sushiswap/sdk'
+import { Currency, CurrencyAmount, NATIVE, WNATIVE, JSBI, Percent, Token, Trade as V2Trade, TradeType, WNATIVE_ADDRESS, ChainId } from '@sushiswap/sdk'
 import useActiveWeb3React from '../../../hooks/useActiveWeb3React';
-import {getTokenAddress} from "../../../utils/addressHelpers"
-import {useAllTokens} from "./allTokens"
-import {isAddress} from "../../../utils/getContract"
-import { useTokenContract,useBytes32TokenContract } from '../../../hooks/useContract';
-import { Contract } from '@ethersproject/contracts'
-import { BigNumber } from '@ethersproject/bignumber'
+import { getTokenAddress } from "../../../utils/addressHelpers"
+import { useAllTokens } from '../../../hooks/Tokens';
+import { isAddress } from "../../../utils/getContract"
+import { useTokenContract, useBytes32TokenContract } from '../../../hooks/useContract';
 import { useMemo } from 'react'
 
 import { arrayify } from '@ethersproject/bytes'
@@ -45,7 +43,7 @@ export interface SwapState {
   readonly recipient?: string | null
 }
 
-export function useDerivedSwapInfo(typedValue:string): {
+export function useDerivedSwapInfo(typedValue: string): {
   currencies: { [field in Field]?: Currency }
   currencyBalances: { [field in Field]?: CurrencyAmount<Currency> }
   parsedAmount: CurrencyAmount<Currency> | undefined
@@ -55,40 +53,40 @@ export function useDerivedSwapInfo(typedValue:string): {
   const { account } = useActiveWeb3React()
 
   const swapState: SwapState = {
-  independentField: Field.INPUT,
-  typedValue,
-  [Field.INPUT]: {
-    currencyId: 'ETH',
-  },
-  [Field.OUTPUT]: {
-    currencyId: getTokenAddress('WNDR',chainId),
-  },
-  recipient: account,
-}
+    independentField: Field.INPUT,
+    typedValue,
+    [Field.INPUT]: {
+      currencyId: 'ETH',
+    },
+    [Field.OUTPUT]: {
+      currencyId: getTokenAddress('WNDR', chainId),
+    },
+    recipient: account,
+  }
 
-console.log(">>>>>>>>",swapState)
+  console.log(">>>>>>>>", swapState)
 
-console.log("independentField>>>", swapState.independentField)
-console.log("typedValue>>>", swapState.typedValue)
-console.log("inputCurrencyId>>>", swapState[Field.INPUT].currencyId)
-console.log("outputCurrencyId>>>", swapState[Field.OUTPUT].currencyId)
-console.log("recipient>>>", swapState.recipient)
+  console.log("independentField>>>", swapState.independentField)
+  console.log("typedValue>>>", swapState.typedValue)
+  console.log("inputCurrencyId>>>", swapState[Field.INPUT].currencyId)
+  console.log("outputCurrencyId>>>", swapState[Field.OUTPUT].currencyId)
+  console.log("recipient>>>", swapState.recipient)
 
-let inputCurrencyId = swapState[Field.INPUT].currencyId
-let outputCurrencyId = swapState[Field.OUTPUT].currencyId
+  let inputCurrencyId = swapState[Field.INPUT].currencyId
+  let outputCurrencyId = swapState[Field.OUTPUT].currencyId
 
-const inputCurrency = useCurrency(inputCurrencyId)
-const outputCurrency = useCurrency(outputCurrencyId)
+  const inputCurrency = useCurrency(inputCurrencyId)
+  const outputCurrency = useCurrency(outputCurrencyId)
 
-console.log("inputCurrency, outputCurrency", inputCurrency, outputCurrency)
-const to: string | null | undefined = account
+  console.log("inputCurrency, outputCurrency", inputCurrency, outputCurrency)
+  const to: string | null | undefined = account
 
-const relevantTokenBalances = useCurrencyBalances(account ?? undefined, [
-  inputCurrency ?? undefined,
-  outputCurrency ?? undefined,
-]) //
+  const relevantTokenBalances = useCurrencyBalances(account ?? undefined, [
+    inputCurrency ?? undefined,
+    outputCurrency ?? undefined,
+  ]) //
 
-console.log("relevantTokenBalances>>>", relevantTokenBalances)
+  console.log("relevantTokenBalances>>>", relevantTokenBalances)
 
   // {
   //   currencies,
@@ -126,13 +124,13 @@ export function useCurrency(currencyId: string | undefined): Currency | null | u
 
 
 export function useToken(tokenAddress?: string): Token | undefined | null {
-  const tokens:any = useAllTokens()
+  const tokens: any = useAllTokens()
 
   const address = isAddress(tokenAddress)
 
   const tokenContract = useTokenContract(address ? address : undefined, false)
   const tokenContractBytes32 = useBytes32TokenContract(address ? address : undefined, false)
-  const token: Token | undefined  = address ? tokens[address] : undefined
+  const token: Token | undefined = address ? tokens[address] : undefined
 
   const tokenName = useSingleCallResult(token ? undefined : tokenContract, 'name', undefined, NEVER_RELOAD)
   const tokenNameBytes32 = useSingleCallResult(
@@ -181,6 +179,6 @@ function parseStringOrBytes32(str: string | undefined, bytes32: string | undefin
     ? str
     : // need to check for proper bytes string and valid terminator
     bytes32 && BYTES32_REGEX.test(bytes32) && arrayify(bytes32)[31] === 0
-    ? parseBytes32String(bytes32)
-    : defaultValue
+      ? parseBytes32String(bytes32)
+      : defaultValue
 }

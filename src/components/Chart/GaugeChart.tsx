@@ -19,13 +19,11 @@ const GaugeChart: React.FC<GaugeChartProps> = ({ label, series }) => {
                 dataLabels: {
                     name: {
                         fontSize: '16px',
-                        color: undefined,
                         offsetY: 120
                     },
                     value: {
                         offsetY: 76,
                         fontSize: '22px',
-                        color: undefined,
                         formatter: function (val: number) {
                             return val + "%";
                         }

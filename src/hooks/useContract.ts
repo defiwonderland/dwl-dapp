@@ -9,15 +9,15 @@ import { getContract } from "../utils/getContract"
 import {
     getBonusRewardAddress,
     getWonderVerseAddress,
-    getMulticallAddress
+    getMulticall2Address
 } from "../utils/addressHelpers"
 
 //ABI
-import {ERC20_ABI,ERC20_BYTES32_ABI} from "../config/abi/erc20"
+import { ERC20_ABI, ERC20_BYTES32_ABI } from "../config/abi/erc20"
 import BONUS_REWARD_ABI from "../config/abi/bonusReward.json"
 import IDO_ABI from "../config/abi/ido.json"
 import WONDER_VERSE_ABI from "../config/abi/wonderverse.json"
-import multiCallAbi from '../config/abi/multicall.json'
+import MULTICALL_ABI from '../config/abi/multicall.json'
 
 const chainId = Number(process.env.REACT_APP_CHAIN_ID)
 
@@ -44,7 +44,7 @@ export const useTokenContract = (address?: string, withSignerIfPossible?: boolea
 }
 
 export function useBytes32TokenContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {
-  return useContract(tokenAddress, ERC20_BYTES32_ABI, withSignerIfPossible)
+    return useContract(tokenAddress, ERC20_BYTES32_ABI, withSignerIfPossible)
 }
 
 export const useBonusRewardContract = () => {
@@ -59,7 +59,8 @@ export const useWonderVerseContract = () => {
     return useContract(getWonderVerseAddress(chainId), WONDER_VERSE_ABI)
 }
 
-
 export function useMulticallContract(): Contract | null {
-  return useContract(getMulticallAddress(chainId), multiCallAbi, false)
+    return useContract(getMulticall2Address(chainId), MULTICALL_ABI, false)
 }
+
+

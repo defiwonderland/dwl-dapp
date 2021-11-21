@@ -1,4 +1,5 @@
 import { ChainId } from ".."
+import { MULTICALL2_ADDRESS } from "@sushiswap/sdk"
 
 const contractAddresses = {
     bonusReward: {
@@ -11,6 +12,12 @@ const contractAddresses = {
         [ChainId.MATIC]: '',
         [ChainId.KOVAN]: '0xB507EFe0Cf59F6F820914cB7ada622718B552DaB',
         [ChainId.MATIC_TESTNET]: "0x08411ADd0b5AA8ee47563b146743C13b3556c9Cc"
+    },
+
+    mullticall2: {
+        [ChainId.MATIC]: '',
+        [ChainId.KOVAN]: MULTICALL2_ADDRESS[ChainId.KOVAN],
+        [ChainId.MATIC_TESTNET]: MULTICALL2_ADDRESS[ChainId.MATIC_TESTNET]
     },
 
     priceFeed: {

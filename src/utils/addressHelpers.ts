@@ -13,6 +13,10 @@ export const getMulticallAddress = (chainId: ChainId) => {
     return contractAddresses.mullticall[chainId]
 }
 
+export const getMulticall2Address = (chainId: ChainId) => {
+    return contractAddresses.mullticall2[chainId]
+}
+
 export const getPriceFeedAddress = (chainId: ChainId) => {
     return contractAddresses.priceFeed[chainId]
 }
