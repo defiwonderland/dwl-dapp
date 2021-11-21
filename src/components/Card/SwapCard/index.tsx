@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useCallback } from "react"
 import { StyledCard, CardText } from "../elements";
 import { StyledH3 } from "../../Text";
 import { Box } from "@mui/system";
@@ -9,13 +9,47 @@ import { PrimaryButton } from "../../Button";
 import useActiveWeb3React from "../../../hooks/useActiveWeb3React";
 import { CustomImg } from "../elements";
 import UnlockButton from "../../UnlockButton";
-import {useDerivedSwapInfo} from "./hooks"
+import { useDerivedSwapInfo } from "./hooks"
+import { useSwapCallback } from "../../../hooks/useSwapCallback";
+import { ErrorFragment } from "@ethersproject/abi";
 
 const SwapCard: React.FC = () => {
     const { account } = useActiveWeb3React()
     const [fromValue, setFromValue] = useState<string>('0')
     const [toValue, setToValue] = useState<string>('0');
-    const swapState = useDerivedSwapInfo(fromValue);
+    const doArcher: any = undefined
+    const {
+        v2Trade,
+        currencyBalances,
+        parsedAmount,
+        currencies,
+        inputError: swapInputError,
+        allowedSlippage,
+    } = useDerivedSwapInfo(fromValue, doArcher)
+    // the callback to execute the swap
+    const trade = v2Trade
+    const signatureData: any = undefined
+    const { callback: swapCallback, error: swapCallbackError } = useSwapCallback(
+        trade,
+        allowedSlippage,
+        account,
+        signatureData,
+        doArcher
+    )
+
+    const handleSwap = useCallback(() => {
+        if (!swapCallback) {
+            return
+        }
+
+        swapCallback()
+            .then((hash) => {
+                console.log(">>>>>>>>", hash)
+            }).catch((error) => {
+                console.log(">>>>>>>>", error)
+            })
+    }, [swapCallback])
+
 
     return (
         <StyledBox>
@@ -46,16 +80,16 @@ const SwapCard: React.FC = () => {
                             justifyContent: "start",
                             width: "200px"
                         }}>
-                            <CustomImg src="./images/trades/eth.png" />
+                            <CustomImg src="./images/trades/wndr.png" />
 
                             <Box>
                                 <CardText ml="15px" mt="5px" mb="5px" fontWeight={600} color="#ffffff">From</CardText>
-                                <CardText ml="15px" mt="5px" mb="5px" fontWeight={400} color="#ffffff">ETH</CardText>
+                                <CardText ml="15px" mt="5px" mb="5px" fontWeight={400} color="#ffffff">WNDR</CardText>
                             </Box>
                         </Box>
 
                         <InputContainer>
-                            <TradeInput disableUnderline={true} value={fromValue} onChange={(e:any)=>setFromValue(e.target.value)}/>
+                            <TradeInput disableUnderline={true} value={fromValue} onChange={(e: any) => setFromValue(e.target.value)} />
                         </InputContainer>
                     </Box>
                 </StyledCard>
@@ -73,11 +107,11 @@ const SwapCard: React.FC = () => {
                             justifyContent: "start",
                             width: "200px",
                         }}>
-                            <CustomImg src="./images/trades/wndr.png" />
+                            <CustomImg src="./images/trades/eth.png" />
 
                             <Box>
                                 <CardText ml="15px" mt="5px" mb="5px" fontWeight={600} color="#ffffff">To</CardText>
-                                <CardText ml="15px" mt="5px" mb="5px" fontWeight={400} color="#ffffff">WNDR</CardText>
+                                <CardText ml="15px" mt="5px" mb="5px" fontWeight={400} color="#ffffff">ETH</CardText>
                             </Box>
                         </Box>
 
@@ -88,7 +122,7 @@ const SwapCard: React.FC = () => {
                 </StyledCard>
 
                 {
-                    account ? <PrimaryButton>Swap</PrimaryButton> : <UnlockButton />
+                    account ? <PrimaryButton onClick={handleSwap}>Swap</PrimaryButton> : <UnlockButton />
                 }
 
             </StyledCard>

@@ -2,7 +2,7 @@ import { Currency, CurrencyAmount, JSBI, NATIVE, Token } from '@sushiswap/sdk'
 import { useMemo } from 'react'
 import ERC20_INTERFACE from '../../config/abi/erc20'
 import { useMulticallContract } from '../../hooks/useContract'
-import { isAddress } from '../../utils/getContract'
+import { isAddress } from '../../functions/validate'
 import { useSingleContractMultipleData, useMultipleContractSingleData } from '../multicall/hooks'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 import { useAllTokens } from '../../hooks/Tokens'
@@ -62,8 +62,6 @@ export function useTokenBalancesWithLoadingIndicator(
 
   const balances = useMultipleContractSingleData(validatedTokenAddresses, ERC20_INTERFACE, 'balanceOf', [address])
 
-  console.log("balances >>>>", balances)
-
   const anyLoading: boolean = useMemo(() => balances.some((callState) => callState.loading), [balances])
 
   return [
@@ -112,10 +110,11 @@ export function useCurrencyBalances(
     () => currencies?.filter((currency): currency is Token => currency?.isToken ?? false) ?? [],
     [currencies]
   )
-  console.log("tokens>>>>", tokens)
-  console.log("currencies>>>>", currencies)
+
+  console.log(">>>>>>tokens", tokens)
+
   const tokenBalances = useTokenBalances(account, tokens)
-  console.log("tokenBalances>>>>", tokenBalances)
+  console.log(">>>>>>>tokenBalances", tokenBalances)
   const containsETH: boolean = useMemo(() => currencies?.some((currency) => currency?.isNative) ?? false, [currencies])
   const ethBalance = useETHBalances(containsETH ? [account] : [])
 

@@ -13,7 +13,6 @@ interface Call {
 
 export const multicall = async (abi: any[], calls: Call[]) => {
     const multi = new ethers.Contract(getMulticallAddress(chainId), MultiCallAbi, simpleRpcProvider)
-    console.log(MultiCallAbi)
     const itf = new ethers.utils.Interface(abi)
 
     const calldata = calls.map((call) => [call.address.toLowerCase(), itf.encodeFunctionData(call.name, call.params)])

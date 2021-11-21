@@ -2,17 +2,7 @@ import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { AddressZero } from '@ethersproject/constants'
 import { Contract } from '@ethersproject/contracts'
 import { ethers } from 'ethers'
-import { getAddress } from '@ethersproject/address'
-
-
-// returns the checksummed address if the address is valid, otherwise returns false
-export function isAddress(value: any): string | false {
-    try {
-        return getAddress(value)
-    } catch {
-        return false
-    }
-}
+import { isAddress } from '../functions/validate'
 
 // account is not optional
 export function getSigner(library: Web3Provider, account: string): JsonRpcSigner {
