@@ -7,7 +7,6 @@ import {
   Token,
   Trade,
   TradeType,
-  currencyEquals,
 } from '@sushiswap/sdk'
 import { ONE_HUNDRED_PERCENT, ZERO_PERCENT } from '../config/constants'
 

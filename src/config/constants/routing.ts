@@ -36,7 +36,6 @@ import {
     RENBTC,
     RUNE,
     STETH,
-    SUSHI,
     UMA,
     USDC,
     USDP,
@@ -47,7 +46,7 @@ import {
     XSUSHI,
 } from './tokens'
 // a list of tokens by chain
-import { ChainId, Currency, Token, WNATIVE } from '@sushiswap/sdk'
+import { ChainId, Token, WNATIVE } from '@sushiswap/sdk'
 
 type ChainTokenList = {
     readonly [chainId: number]: Token[]

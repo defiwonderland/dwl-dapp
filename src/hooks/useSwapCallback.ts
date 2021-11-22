@@ -1,10 +1,9 @@
-import { BIPS_BASE, EIP_1559_ACTIVATION_BLOCK } from '../config/constants'
+import { EIP_1559_ACTIVATION_BLOCK } from '../config/constants'
 import {
     ChainId,
     Currency,
     CurrencyAmount,
     Ether,
-    JSBI,
     Percent,
     Router,
     TradeType,

@@ -2,7 +2,6 @@ import { useAppDispatch, useAppSelector } from '../hooks'
 import { useCallback, useMemo } from 'react'
 
 import { TransactionDetails } from './reducer'
-import { TransactionResponse } from '@ethersproject/providers'
 import { addTransaction } from './actions'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 

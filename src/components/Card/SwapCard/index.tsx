@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useEffect } from "react"
+import React, { useCallback, useMemo } from "react"
 import { StyledCard, CardText } from "../elements";
 import { StyledH3 } from "../../Text";
 import { Box } from "@mui/system";

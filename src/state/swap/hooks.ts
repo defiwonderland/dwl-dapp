@@ -1,9 +1,8 @@
 import { useCallback } from 'react'
-import { Currency, CurrencyAmount, JSBI } from '@sushiswap/sdk'
+import { Currency } from '@sushiswap/sdk'
 import { Field, selectCurrency, setRecipient, switchCurrencies, typeInput } from './actions'
 import { AppDispatch, AppState } from '../index'
 import { useDispatch, useSelector } from 'react-redux'
-import { parseUnits } from '@ethersproject/units'
 
 export function useSwapState(): AppState['swap'] {
     return useSelector<AppState, AppState['swap']>((state) => state.swap)
