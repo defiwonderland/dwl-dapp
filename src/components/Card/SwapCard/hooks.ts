@@ -1,6 +1,5 @@
-import { Currency, CurrencyAmount, NATIVE, WNATIVE, JSBI, Percent, Token, Trade as V2Trade, TradeType, WNATIVE_ADDRESS, ChainId } from '@sushiswap/sdk'
+import { Currency, CurrencyAmount, NATIVE, JSBI, Percent, Token, Trade as V2Trade, TradeType } from '@sushiswap/sdk'
 import useActiveWeb3React from '../../../hooks/useActiveWeb3React';
-import { getTokenAddress } from "../../../utils/addressHelpers"
 import { useAllTokens } from '../../../hooks/Tokens';
 import { isAddress, isZero } from '../../../functions/validate'
 import { useTokenContract, useBytes32TokenContract } from '../../../hooks/useContract';
@@ -31,6 +30,8 @@ import {
   SuccessfulCall
 } from '../../../hooks/useSwapCallback';
 
+import { useSwapState } from '../../../state/swap/hooks';
+
 export interface ListenerOptions {
   // how often this data should be fetched, by default 1
   readonly blocksPerFetch?: number
@@ -46,20 +47,6 @@ export enum Field {
   INPUT = 'INPUT',
   OUTPUT = 'OUTPUT',
 }
-
-export interface SwapState {
-  readonly independentField: Field
-  readonly typedValue: string
-  readonly [Field.INPUT]: {
-    readonly currencyId: string | undefined
-  }
-  readonly [Field.OUTPUT]: {
-    readonly currencyId: string | undefined
-  }
-  // the typed recipient address or ENS name, or null if swap should go to sender
-  readonly recipient?: string | null
-}
-
 
 const BAD_RECIPIENT_ADDRESSES: string[] = [
   '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f', // v2 factory
@@ -83,7 +70,7 @@ function involvesAddress(trade: V2Trade<Currency, Currency, TradeType>, checksum
 }
 
 
-export function useDerivedSwapInfo(typedValue: string, doArcher = false): {
+export function useDerivedSwapInfo(doArcher = false): {
   currencies: { [field in Field]?: Currency }
   currencyBalances: { [field in Field]?: CurrencyAmount<Currency> }
   parsedAmount: CurrencyAmount<Currency> | undefined
@@ -95,43 +82,25 @@ export function useDerivedSwapInfo(typedValue: string, doArcher = false): {
 
   const [singleHopOnly] = useUserSingleHopOnly()
 
-  const swapState: SwapState = {
-    independentField: Field.INPUT,
+  const {
+    independentField,
     typedValue,
-    [Field.INPUT]: {
-      currencyId: getTokenAddress("WNDR", chainId),
-    },
-    [Field.OUTPUT]: {
-      currencyId: "ETH",
-    },
-    recipient: account,
-  }
-
-  console.log(">>>>>>>>", swapState)
-
-  console.log("independentField>>>", swapState.independentField)
-  console.log("typedValue>>>", swapState.typedValue)
-  console.log("inputCurrencyId>>>", swapState[Field.INPUT].currencyId)
-  console.log("outputCurrencyId>>>", swapState[Field.OUTPUT].currencyId)
-  console.log("recipient>>>", swapState.recipient)
-
-  let inputCurrencyId = swapState[Field.INPUT].currencyId
-  let outputCurrencyId = swapState[Field.OUTPUT].currencyId
+    [Field.INPUT]: { currencyId: inputCurrencyId },
+    [Field.OUTPUT]: { currencyId: outputCurrencyId },
+    recipient,
+  } = useSwapState()
 
   const inputCurrency = useCurrency(inputCurrencyId)
   const outputCurrency = useCurrency(outputCurrencyId)
 
-  console.log("inputCurrency, outputCurrency", inputCurrency, outputCurrency)
-  const to: string | null | undefined = account
+  const to: string | null | undefined = recipient
 
   const relevantTokenBalances = useCurrencyBalances(account ?? undefined, [
     inputCurrency ?? undefined,
     outputCurrency ?? undefined,
   ]) //
 
-  console.log("relevantTokenBalances>>>", relevantTokenBalances)
-
-  const isExactIn: boolean = swapState.independentField === Field.INPUT
+  const isExactIn: boolean = independentField === Field.INPUT
 
   const parsedAmount = tryParseAmount(typedValue, (isExactIn ? inputCurrency : outputCurrency) ?? undefined)
 

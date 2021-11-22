@@ -1,5 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit'
 import { Field, replaceSwapState, selectCurrency, setRecipient, switchCurrencies, typeInput } from './actions'
+import { getTokenAddress } from '../../utils/addressHelpers'
+
+const chainId = Number(process.env.REACT_APP_CHAIN_ID)
 
 export interface SwapState {
     readonly independentField: Field
@@ -18,10 +21,10 @@ const initialState: SwapState = {
     independentField: Field.INPUT,
     typedValue: '',
     [Field.INPUT]: {
-        currencyId: '',
+        currencyId: 'ETH',
     },
     [Field.OUTPUT]: {
-        currencyId: '',
+        currencyId: getTokenAddress("WNDR", chainId),
     },
     recipient: null,
 }
