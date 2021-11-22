@@ -192,7 +192,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
                             alignItems: "center",
                             justifyContent: "center",
                         }}>
-                            <FarmImg src={`./images/farms/${farm.stakeToken.symbol}.png`} />
+                            <FarmImg src={`./images/farms/${farm.stakeToken.symbol.toLowerCase()}.png`} />
                             <CardTitle>{farm.stakeToken.symbol}</CardTitle>
                         </Box>
 

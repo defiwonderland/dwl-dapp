@@ -203,7 +203,7 @@ const SwapCard: React.FC = () => {
                                 justifyContent: "start",
                                 width: "200px"
                             }}>
-                                <CustomImg src={`./images/trades/${inputCurrency}.png`} />
+                                <CustomImg src={`./images/trades/${inputCurrency.toLowerCase()}.png`} />
                                 <CardText ml="15px" mt="5px" mb="5px" fontWeight={400} color="#ffffff">{inputCurrency}</CardText>
                             </Box>
 
@@ -263,7 +263,7 @@ const SwapCard: React.FC = () => {
                                 justifyContent: "start",
                                 width: "200px",
                             }}>
-                                <CustomImg src={`./images/trades/${outputCurrency}.png`} />
+                                <CustomImg src={`./images/trades/${outputCurrency.toLowerCase()}.png`} />
                                 <CardText ml="15px" mt="5px" mb="5px" fontWeight={400} color="#ffffff">{outputCurrency}</CardText>
                             </Box>
 
