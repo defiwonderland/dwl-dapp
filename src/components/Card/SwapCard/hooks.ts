@@ -137,18 +137,6 @@ export function useDerivedSwapInfo(doArcher = false): {
     inputError = inputError ?? "Select a token"
   }
 
-  const formattedTo = isAddress(to)
-
-  if (!to || !formattedTo) {
-    inputError = inputError ?? "Enter a recipient"
-  } else if (
-    BAD_RECIPIENT_ADDRESSES.indexOf(formattedTo) !== -1 ||
-    (bestTradeExactIn && involvesAddress(bestTradeExactIn, formattedTo)) ||
-    (bestTradeExactOut && involvesAddress(bestTradeExactOut, formattedTo))
-  ) {
-    inputError = inputError ?? 'Invalid recipient'
-  }
-
   const allowedSlippage = useSwapSlippageTolerance(v2Trade)
 
   // compare input balance to max input based on version

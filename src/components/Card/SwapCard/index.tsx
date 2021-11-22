@@ -25,6 +25,7 @@ import {
     useSuccessState
 } from "../../../state/snackbar/hooks"
 import CustomSnackbar from "../../Snackbar";
+import { ApprovalState, useApproveCallbackFromTrade } from "../../../hooks/useApprove";
 
 const chainId = Number(process.env.REACT_APP_CHAIN_ID)
 
@@ -86,6 +87,17 @@ const SwapCard: React.FC = () => {
     const signatureData: any = undefined
     const dependentField: Field = independentField === Field.INPUT ? Field.OUTPUT : Field.INPUT
 
+    // check whether the user has approved the router on the input token
+    const [approvalState, approveCallback] = useApproveCallbackFromTrade(trade, allowedSlippage, doArcher)
+
+    const showApprove = !swapInputError &&
+        (approvalState === ApprovalState.NOT_APPROVED ||
+            approvalState === ApprovalState.PENDING)
+
+    const handleApprove = useCallback(async () => {
+        await approveCallback()
+    }, [approveCallback])
+
     const parsedAmounts = useMemo(() => {
         return {
             [Field.INPUT]: independentField === Field.INPUT ? parsedAmount : trade?.inputAmount,
@@ -135,6 +147,8 @@ const SwapCard: React.FC = () => {
 
         swapCallback()
             .then((hash) => {
+                handleTypeInput("")
+                handleTypeOutput("")
                 setLoadingState({ loading: false, loadingMessage: "" })
                 setSuccessState({ success: true, successMessage: `Swapped ${formattedAmounts[Field.INPUT]} ${inputCurrency} to ${formattedAmounts[Field.OUTPUT]} ${outputCurrency}...` })
                 setOpenSnackbar(true)
@@ -144,7 +158,8 @@ const SwapCard: React.FC = () => {
                 setErrorState({ error: true, errorMessage: `Oops! Failed to swap ${inputCurrency} to ${outputCurrency}. Please try again!` })
                 setOpenSnackbar(true)
             })
-    }, [swapCallback, inputCurrency, outputCurrency, formattedAmounts, setErrorState, setLoadingState, setOpenSnackbar, setSuccessState, setTransactionHash])
+    }, [swapCallback, handleTypeInput, handleTypeOutput, inputCurrency, outputCurrency, formattedAmounts, setErrorState, setLoadingState, setOpenSnackbar, setSuccessState, setTransactionHash])
+
 
     return (
         <>
@@ -303,10 +318,14 @@ const SwapCard: React.FC = () => {
 
                     {
                         account
-                            ? <PrimaryButton
-                                onClick={handleSwap}
-                                disabled={Number(inputBalance) === 0 || !isInputValid}
-                            >Swap</PrimaryButton>
+                            ? (
+                                showApprove ? <PrimaryButton
+                                    onClick={handleApprove}
+                                    disabled={approvalState !== ApprovalState.NOT_APPROVED}
+                                >{approvalState === ApprovalState.PENDING ? "Approving..." : "Approve"}</PrimaryButton> : <PrimaryButton
+                                    onClick={handleSwap}
+                                    disabled={Number(inputBalance) === 0 || !isInputValid}
+                                >{swapInputError ? swapInputError : "Swap"}</PrimaryButton>)
                             : <UnlockButton />
                     }
 

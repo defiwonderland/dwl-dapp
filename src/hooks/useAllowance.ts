@@ -1,9 +1,12 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import useActiveWeb3React from './useActiveWeb3React'
 import BigNumber from 'bignumber.js'
 import { getBonusRewardAddress } from '../utils/addressHelpers'
 import useRefresh from './useRefresh'
 import { Contract } from '@ethersproject/contracts'
+import { CurrencyAmount, Token } from '@sushiswap/sdk'
+import { useSingleCallResult } from '../state/multicall/hooks'
+import { useTokenContract } from './useContract'
 
 const chainId = Number(process.env.REACT_APP_CHAIN_ID)
 
@@ -58,4 +61,16 @@ export const useWndrAllowance = (wndrContract: Contract, contractAddress: string
     }, [account, wndrContract, fastRefresh, fetchAllowance])
 
     return allowance
+}
+
+export function useTokenAllowance(token?: Token, owner?: string, spender?: string): CurrencyAmount<Token> | undefined {
+    const contract = useTokenContract(token?.address, false)
+
+    const inputs = useMemo(() => [owner, spender], [owner, spender])
+    const allowance = useSingleCallResult(contract, 'allowance', inputs).result
+
+    return useMemo(
+        () => (token && allowance ? CurrencyAmount.fromRawAmount(token, allowance.toString()) : undefined),
+        [token, allowance]
+    )
 }
