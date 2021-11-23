@@ -12,6 +12,8 @@ import CustomSwitch from "../../../components/Switch"
 import CustomTab from "../../../components/Tab"
 import PopoverList, { componentElement } from "../../../components/Popover"
 import { useWindowWidth } from "../../../hooks/useWindowWidth"
+import { IconButton } from '@mui/material';
+import { BsThreeDotsVertical } from "react-icons/bs"
 import { styled } from "@mui/system"
 
 const StyledSelectBox = styled(Box)(({ theme }) => ({
@@ -28,6 +30,7 @@ function FarmOptions(): JSX.Element {
     const [farm, setFarm] = useState("")
     const [filter, setFilter] = useState("Hot")
     const [checked, setChecked] = useState(false)
+    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
     const [status, setStatus] = useState(0)
     const windowWidth = useWindowWidth(600)
     const options: menuItems[] = [
@@ -51,6 +54,10 @@ function FarmOptions(): JSX.Element {
         setFilter(formatListItem)
     }
 
+    const handlePopoverClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
     const comp1 = <CustomSwitch
         checked={checked}
         onChange={e => setChecked(e.target.checked)}
@@ -63,6 +70,10 @@ function FarmOptions(): JSX.Element {
         labelText={["Live", "Finished"]}
         smbgcolor="#a2afad"
     />
+
+    const buttonComponent = <IconButton onClick={handlePopoverClick}>
+        <BsThreeDotsVertical width="18px" height="18px" />
+    </IconButton>
 
     const componentArray: componentElement[] = [
         {
@@ -113,7 +124,12 @@ function FarmOptions(): JSX.Element {
                                 }
                             />
 
-                            {!windowWidth && <PopoverList componentArray={componentArray} />}
+                            {!windowWidth && <PopoverList
+                                buttonComponent={buttonComponent}
+                                anchorEl={anchorEl}
+                                onClose={() => setAnchorEl(null)}
+                                componentArray={componentArray}
+                            />}
                         </Box>
                     </Grid>
 

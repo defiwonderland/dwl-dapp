@@ -9,13 +9,20 @@ import CustomSwitch from "../../../components/Switch"
 import CustomTab from "../../../components/Tab"
 import PopoverList, { componentElement } from "../../../components/Popover"
 import { useWindowWidth } from "../../../hooks/useWindowWidth"
+import { IconButton } from '@mui/material';
+import { BsThreeDotsVertical } from "react-icons/bs"
 
 const PoolOptions: React.FC = () => {
     const [pools, setPools] = useState<string>("")
     const [stakeCheck, setStakeCheck] = useState<boolean>(false)
     const [tokenCheck, setTokenCheck] = useState<boolean>(false)
     const [poolStatus, setPoolStatus] = useState<number>(0)
+    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
     const windowWidth = useWindowWidth(600)
+
+    const handlePopoverClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
 
     const comp1 = <CustomSwitch
         checked={stakeCheck}
@@ -51,6 +58,10 @@ const PoolOptions: React.FC = () => {
         }
     ]
 
+    const buttonComponent = <IconButton onClick={handlePopoverClick}>
+        <BsThreeDotsVertical width="18px" height="18px" />
+    </IconButton>
+
     return (
         <OptionsContainer>
             <WidthWrapper>
@@ -73,7 +84,12 @@ const PoolOptions: React.FC = () => {
                                 }
                             />
 
-                            {!windowWidth && <PopoverList componentArray={componentArray} />}
+                            {!windowWidth && <PopoverList
+                                buttonComponent={buttonComponent}
+                                anchorEl={anchorEl}
+                                onClose={() => setAnchorEl(null)}
+                                componentArray={componentArray}
+                            />}
                         </Box>
                     </Grid>
 

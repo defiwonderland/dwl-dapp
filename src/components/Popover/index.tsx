@@ -1,9 +1,8 @@
 import * as React from 'react';
 import Popover from '@mui/material/Popover';
 import List from '@mui/material/List';
-import { IconButton } from '@mui/material';
 import ListItem from '@mui/material/ListItem';
-import { BsThreeDotsVertical } from "react-icons/bs"
+import { ListSubheader } from '@mui/material';
 
 export type componentElement = {
     id: string,
@@ -11,39 +10,33 @@ export type componentElement = {
 }
 
 export interface PopoverListProps {
+    anchorEl: HTMLButtonElement | null
     componentArray: componentElement[]
+    onClose: () => void
+    buttonComponent: JSX.Element
+    header?: string
 }
 
-const PopoverList: React.FC<PopoverListProps> = ({ componentArray }) => {
-    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
+const PopoverList: React.FC<PopoverListProps> = ({ anchorEl, componentArray, onClose, buttonComponent, header }) => {
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
     return (
         <div>
-            <IconButton aria-describedby={id} onClick={handleClick}>
-                <BsThreeDotsVertical width="18px" height="18px" />
-            </IconButton>
+            {buttonComponent}
             <Popover
                 id={id}
                 open={open}
                 anchorEl={anchorEl}
-                onClose={handleClose}
+                onClose={onClose}
                 anchorOrigin={{
                     vertical: 'bottom',
-                    horizontal: 'right',
+                    horizontal: 'left',
                 }}
             >
                 <List>
+                    {header && <ListSubheader sx={{ fontWeight: 600, fontSize: "16px" }}>{header}</ListSubheader>}
+
                     {
                         componentArray.map(component => (
                             <ListItem key={component.id}>

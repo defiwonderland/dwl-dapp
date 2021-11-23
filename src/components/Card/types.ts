@@ -61,3 +61,8 @@ export interface DirectionIconCardProps {
     isup: boolean
     text: string
 }
+
+export interface PopoverSettingProps {
+    open: boolean
+    onClose: () => void
+}
