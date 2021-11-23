@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react"
+import React, { useCallback, useMemo, useEffect } from "react"
 import { StyledCard, CardText } from "../elements";
 import { StyledH3 } from "../../Text";
 import { Box } from "@mui/system";
@@ -30,7 +30,7 @@ import { ApprovalState, useApproveCallbackFromTrade } from "../../../hooks/useAp
 import PopoverList from "../../Popover";
 import { componentElement } from "../../Popover";
 import { TextField } from "@mui/material";
-import { useSetUserSlippageTolerance, useUserTransactionTTL } from "../../../state/user/hooks";
+import { useSetUserSlippageTolerance, useUserTransactionTTL, useUserSlippageTolerance } from "../../../state/user/hooks";
 import { DEFAULT_DEADLINE_FROM_NOW } from "../../../config/constants";
 
 const chainId = Number(process.env.REACT_APP_CHAIN_ID)
@@ -51,6 +51,7 @@ const SwapCard: React.FC = () => {
     const [warningSlippage, setWarningSlippage] = React.useState<boolean>(false)
     const [deadline, setDeadline] = useUserTransactionTTL()
     const [validDeadline, setValidDeadline] = React.useState<boolean>(true)
+    const userSlippageTolerance = useUserSlippageTolerance()
     const setUserSlippageTolerance = useSetUserSlippageTolerance()
 
     const parseSlippageInput = (event: any) => {
@@ -83,16 +84,25 @@ const SwapCard: React.FC = () => {
             setDeadline(DEFAULT_DEADLINE_FROM_NOW)
         } else {
             setDeadline(parsed)
+            setValidDeadline(true)
         }
     }
 
+    useEffect(() => {
+        if (anchorEl === null) {
+            setValidSlippage(true)
+            setValidDeadline(true)
+        }
+    }, [anchorEl])
+
     const comp1 = <Box>
         <CardText mt="0px" mb="5px" fontWeight={400}>Slippage Tolerance:</CardText>
-        <Box sx={{ width: "200px" }}>
+        <Box sx={{ width: "100%" }}>
             <TextField
                 size="small"
                 placeholder={"0.5"}
                 error={!validSlippage}
+                defaultValue={userSlippageTolerance === "auto" ? "" : userSlippageTolerance.toSignificant(6)}
                 color={warningSlippage ? "warning" : "primary"}
                 InputProps={{
                     endAdornment: (
@@ -109,10 +119,11 @@ const SwapCard: React.FC = () => {
 
     const comp2 = <Box>
         <CardText mt="0px" mb="5px" fontWeight={400}>Transaction Deadline:</CardText>
-        <Box sx={{ width: "200px" }}>
+        <Box sx={{ width: "100%" }}>
             <TextField
                 size="small"
                 placeholder={String(deadline / 60)}
+                defaultValue={String(deadline / 60)}
                 error={!validDeadline}
                 InputProps={{
                     endAdornment: (
