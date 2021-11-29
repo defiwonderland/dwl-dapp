@@ -102,7 +102,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ title, menus }) => {
                                                 )
                                             } else {
                                                 return (
-                                                    <NavHref href={menu.link} target={"_blank"}>
+                                                    <NavHref key={index} href={menu.link} target={"_blank"}>
                                                         <StyledDropdownMenuItem
                                                             onClick={handleClose}
                                                         >
