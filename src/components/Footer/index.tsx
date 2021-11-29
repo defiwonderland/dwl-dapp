@@ -82,22 +82,22 @@ const Footer = () => {
             {
                 id: "002",
                 text: "Contact",
-                link: "/"
+                link: "#"
             },
             {
                 id: "003",
                 text: "Docs",
-                link: "/"
+                link: "#"
             },
             {
                 id: "004",
                 text: "Blog",
-                link: "/"
+                link: "#"
             },
             {
                 id: "005",
                 text: "Merch",
-                link: "/"
+                link: "#"
             },
         ]
     }
