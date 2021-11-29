@@ -73,12 +73,12 @@ const NftOptions = () => {
         <OptionsContainer>
             <WidthWrapper>
                 <Grid container spacing={2}>
-                    <Grid container item xs={4} sm={6} justifyContent="flex-end" alignItems="center">
+                    <Grid container item xs={5} justifyContent="flex-end" alignItems="center">
                         <Box sx={{
                             display: 'flex',
                             alignItems: "center",
                             justifyContent: "center",
-                            flexGrow: 0.7
+                            flexGrow: 1
                         }}>
                             <CustomSelect
                                 value={sort}
@@ -112,7 +112,7 @@ const NftOptions = () => {
                         </Box>
                     </Grid>
 
-                    <Grid container item xs={8} sm={6} justifyContent="center" alignItems="center">
+                    <Grid container item xs={7} justifyContent="center" alignItems="center">
                         <Box sx={{
                             display: 'flex',
                             alignItems: "center",

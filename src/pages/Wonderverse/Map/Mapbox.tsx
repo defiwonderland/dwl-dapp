@@ -18,7 +18,7 @@ import {
 } from "../../../state/snackbar/hooks"
 import CircularProgress from '@mui/material/CircularProgress';
 import CustomSnackbar from '../../../components/Snackbar';
-import { useGetWonderVerseDetails, useFetchWonderVerseBaseInfo } from '../../../hooks/useFetchWonderVerse';
+import { useGetWonderVerseDetails, useFetchWonderVerseBaseInfo, useGetMintPrice } from '../../../hooks/useFetchWonderVerse';
 import { getTokenAddress, getWonderVerseAddress } from '../../../utils/addressHelpers';
 import { useTokenContract } from '../../../hooks/useContract';
 import { BigNumber } from 'bignumber.js';
@@ -81,6 +81,7 @@ const Mapbox: React.FC = () => {
     const [transactionHash] = useTransactionHash()
     const cities = useGetWonderVerseDetails()
     const baseInfo = useFetchWonderVerseBaseInfo()
+    const mintPrice = useGetMintPrice()
     const isMounted = cities && cities.length > 0
     const wndrAddress = getTokenAddress("WNDR", chainId)
     const wndrDecimals = getTokenDecimals("WNDR")
@@ -106,7 +107,7 @@ const Mapbox: React.FC = () => {
                         </MapLoadingLayout>
                 }
 
-                <PostOrBid info={popupInfo} setPopupInfo={setPopupInfo} allowance={wndrAllowance} tokenBalance={wndrBalance} baseInfo={baseInfo} />
+                <PostOrBid info={popupInfo} setPopupInfo={setPopupInfo} allowance={wndrAllowance} tokenBalance={wndrBalance} baseInfo={baseInfo} mintPrice={mintPrice} />
 
                 <GeolocateControl style={geolocateStyle} />
                 <FullscreenControl style={fullscreenControlStyle} />

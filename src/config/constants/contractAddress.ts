@@ -32,6 +32,12 @@ const contractAddresses = {
         [ChainId.MATIC_TESTNET]: ""
     },
 
+    wonderVerseCollection: {
+        [ChainId.MATIC]: "",
+        [ChainId.KOVAN]: '0x52967b7Fb684aD777aBa0Af55ab20afa8699522d',
+        [ChainId.MATIC_TESTNET]: ""
+    },
+
     factory: {
         [ChainId.MATIC]: FACTORY_ADDRESS[ChainId.MATIC],
         [ChainId.KOVAN]: FACTORY_ADDRESS[ChainId.KOVAN],

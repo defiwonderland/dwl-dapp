@@ -1,5 +1,19 @@
 import { FarmConfig, IdoConfig, FundConfig } from "../../config/types";
 
+
+interface Trait {
+    attributes: Attribute[];
+    image: string;
+    description: string;
+    name: string;
+    id?: string;
+}
+
+interface Attribute {
+    trait_type: string;
+    value: string;
+}
+
 export interface StatsCardProps {
     stats: string,
     desc: string,
@@ -32,8 +46,7 @@ export interface Pool extends FarmConfig {
 }
 
 export interface NftCardProps {
-    id: string
-    img: string
+    collection: Trait
 }
 
 export interface FundCardProps {

@@ -1,3 +1,4 @@
+import { BigNumber } from "bignumber.js"
 import { City } from "../../../config/types";
 
 export interface WonderVerseBaseInfo {
@@ -26,6 +27,7 @@ export interface PostOrBidProps {
     baseInfo?: WonderVerseBaseInfo
     tokenBalance?: number
     allowance?: number
+    mintPrice?: BigNumber
 }
 
 export interface FormProps extends PostOrBidProps {

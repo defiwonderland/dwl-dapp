@@ -29,6 +29,10 @@ export const getWonderVerseAddress = (chainId: ChainId) => {
     return contractAddresses.wonderVerse[chainId]
 }
 
+export const getWonderVerseCollectionAddress = (chainId: ChainId) => {
+    return contractAddresses.wonderVerseCollection[chainId]
+}
+
 export const getFactoryAddress = (chainId: ChainId) => {
     return contractAddresses.factory[chainId]
 }

@@ -18,7 +18,7 @@ const StyledPopup = styled(Popup)(({ theme }) => ({
     }
 }))
 
-const PostOrBid: React.FC<PostOrBidProps> = ({ info, setPopupInfo, allowance, tokenBalance, baseInfo }) => {
+const PostOrBid: React.FC<PostOrBidProps> = ({ info, setPopupInfo, allowance, tokenBalance, baseInfo, mintPrice }) => {
     const [showForm, setShowForm] = useState(false)
 
     let comp = <WonderverseForm info={info} setPopupInfo={setPopupInfo} allowance={allowance} tokenBalance={tokenBalance} baseInfo={baseInfo} setShowForm={setShowForm} />
@@ -27,7 +27,7 @@ const PostOrBid: React.FC<PostOrBidProps> = ({ info, setPopupInfo, allowance, to
         if (showForm) {
             comp = <WonderverseForm info={info} setPopupInfo={setPopupInfo} allowance={allowance} tokenBalance={tokenBalance} baseInfo={baseInfo} setShowForm={setShowForm} />
         } else {
-            comp = <WonderverseDetails info={info} baseInfo={baseInfo} setShowForm={setShowForm} setPopupInfo={setPopupInfo} />
+            comp = <WonderverseDetails info={info} baseInfo={baseInfo} setShowForm={setShowForm} setPopupInfo={setPopupInfo} mintPrice={mintPrice} />
         }
     }
 

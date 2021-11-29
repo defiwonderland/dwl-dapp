@@ -10,7 +10,8 @@ import {
     getBonusRewardAddress,
     getWonderVerseAddress,
     getMulticall2Address,
-    getFactoryAddress
+    getFactoryAddress,
+    getWonderVerseCollectionAddress
 } from "../utils/addressHelpers"
 
 import {
@@ -24,6 +25,7 @@ import { ERC20_ABI, ERC20_BYTES32_ABI } from "../config/abi/erc20"
 import BONUS_REWARD_ABI from "../config/abi/bonusReward.json"
 import IDO_ABI from "../config/abi/ido.json"
 import WONDER_VERSE_ABI from "../config/abi/wonderverse.json"
+import WONDER_VERSE_COLLECTION_ABI from "../config/abi/wonderverseCollction.json"
 import MULTICALL2_ABI from '../config/abi/multicall2.json'
 import ROUTER_ABI from '../config/abi/router.json'
 import FACTORY_ABI from '../config/abi/factory.json'
@@ -70,7 +72,11 @@ export const useIdoContract = (address: string) => {
 }
 
 export const useWonderVerseContract = () => {
-    return useContract(getWonderVerseAddress(chainId), WONDER_VERSE_ABI)
+    return useContract(getWonderVerseAddress(chainId), WONDER_VERSE_ABI, false)
+}
+
+export const useWonderVerseCollectionContract = (withSignerIfPossible?: boolean) => {
+    return useContract(getWonderVerseCollectionAddress(chainId), WONDER_VERSE_COLLECTION_ABI, withSignerIfPossible)
 }
 
 export function useMulticallContract(): Contract | null {
