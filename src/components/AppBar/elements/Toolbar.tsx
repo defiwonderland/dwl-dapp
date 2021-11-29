@@ -82,6 +82,12 @@ export const NavLinks = styled(NavLink)(({ theme }) => ({
     textDecoration: "none"
 }))
 
+export const NavHref = styled('a')(({ theme }) => ({
+    color: theme.palette.text.secondary,
+    cursor: "pointer",
+    textDecoration: "none"
+}))
+
 export const WalletIcon = styled('img')({
     width: "30px",
     height: "30px",

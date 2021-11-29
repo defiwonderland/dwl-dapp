@@ -3,6 +3,7 @@ import { HiMenuAlt4 } from "react-icons/hi"
 import { StyledIconButton } from "../elements/Toolbar"
 import { StyledSidebarMenu, StyledSidebarMenuItem, SidebarLinks } from "../elements/Dropdown";
 import DropdownMenu from "./DropdownMenu";
+import menus from "../../../config/constants/menus";
 
 const SidebarMenu = () => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -69,7 +70,7 @@ const SidebarMenu = () => {
                 </SidebarLinks>
 
                 <StyledSidebarMenuItem>
-                    <DropdownMenu title="More" menuItems={["Info", "Contact", "Documents", "Blog"]} />
+                    <DropdownMenu title="More" menus={menus.slice(2, 6)} />
                 </StyledSidebarMenuItem>
             </StyledSidebarMenu>
 

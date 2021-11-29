@@ -5,7 +5,7 @@ import { Box } from '@mui/system';
 import Collapse from '@mui/material/Collapse';
 import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md"
 import { StyledH5 } from '../Text';
-import { FooterLink, StyledListItemButton } from './elements';
+import { FooterLink, StyledListItemButton, FooterExternal } from './elements';
 import { CollapseLinkProps } from "./types"
 
 const CollapseLink: React.FC<CollapseLinkProps> = ({ title, content }) => {
@@ -36,11 +36,22 @@ const CollapseLink: React.FC<CollapseLinkProps> = ({ title, content }) => {
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                     {
-                        content.map((item) => (
-                            <StyledListItemButton key={item.id}>
-                                <FooterLink to={item.link}>{item.text}</FooterLink>
-                            </StyledListItemButton>
-                        ))
+                        content.map((item) => {
+                            if (item.link.startsWith("/")) {
+                                return (
+                                    <StyledListItemButton key={item.id}>
+                                        <FooterLink to={item.link}>{item.text}</FooterLink>
+                                    </StyledListItemButton>
+                                )
+                            } else {
+                                return (
+                                    <StyledListItemButton key={item.id}>
+                                        <FooterExternal href={item.link} target="_blank">{item.text}</FooterExternal>
+                                    </StyledListItemButton>
+                                )
+                            }
+                        })
+
                     }
                 </List>
             </Collapse>

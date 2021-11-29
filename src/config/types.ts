@@ -92,3 +92,9 @@ export interface City {
     longitude: number
 }
 
+export interface MenuConfig {
+    id: number,
+    item: string,
+    link: string
+}
+

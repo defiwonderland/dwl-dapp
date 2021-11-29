@@ -19,25 +19,19 @@ import { VariantButton } from '../Button';
 import truncateWalletAddress from '../../utils/truncateWalletAddress';
 import AccountDialog from '../Dialog/AccountDialog'
 import { getNetworkInfo } from '../../utils/getChainInfo';
+import menus from '../../config/constants/menus';
+import { useWindowWidth } from '../../hooks/useWindowWidth';
 
 function NavBar() {
-    const initialState = window.innerWidth >= 1200 ? ["Info", "Contact", "Documents", "Blog"] : ["Wonderverse", "Launchpad", "Governance", "Info", "Contact", "Documents", "Blog"]
+    const windowWidh = useWindowWidth(1200)
+    const menuItems = windowWidh ? menus.slice(2, 6) : menus
     const logoState = window.innerWidth >= 900 ? false : true
-    const [menuItems, setMenuItems] = useState<string[]>(initialState)
     const [changeLogo, setChangeLogo] = useState<boolean>(logoState)
     const [open, setOpen] = useState<boolean>(false)
     const [scroll, setScroll] = useState<boolean>(false)
     const { account, chainId } = useActiveWeb3React()
     const tokenBalance = useFetchBalance()
     const networkInfo = getNetworkInfo(Number(chainId))
-
-    const updateMenuItems = () => {
-        if (window.innerWidth >= 1200) {
-            setMenuItems(["Info", "Contact", "Documents", "Blog"])
-        } else {
-            setMenuItems(["Wonderverse", "Launchpad", "Governance", "Info", "Contact", "Documents", "Blog"])
-        }
-    }
 
     const updateLogo = () => {
         if (window.innerWidth >= 900) {
@@ -56,12 +50,10 @@ function NavBar() {
     }
 
     useEffect(() => {
-        window.addEventListener('resize', updateMenuItems)
         window.addEventListener('scroll', changeNav)
         window.addEventListener('resize', updateLogo)
 
         return () => {
-            window.removeEventListener('resize', updateMenuItems)
             window.removeEventListener('scroll', changeNav)
             window.removeEventListener('resize', updateLogo)
         }
@@ -132,7 +124,7 @@ function NavBar() {
                                 </NavLinks>
 
                                 <NavItem>
-                                    <DropdownMenu title="More" menuItems={menuItems} />
+                                    <DropdownMenu title="More" menus={menuItems} />
                                 </NavItem>
                             </NavMenu>
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { FooterWrapper } from "../Layout"
-import { FooterContainer, LogoImg, ImgContainer, FooterLink, FooterLinkItems, SocialWrap, SocialLink } from "./elements"
+import { FooterContainer, LogoImg, ImgContainer, FooterLink, FooterLinkItems, SocialWrap, SocialLink, FooterExternal } from "./elements"
 import Box from '@mui/material/Box';
 import { StyledH5 } from "../Text";
 import { Grid } from "@mui/material";
@@ -77,7 +77,7 @@ const Footer = () => {
             {
                 id: "001",
                 text: "Info",
-                link: "/"
+                link: "https://docs.defiwonderland.finance/"
             },
             {
                 id: "002",
@@ -205,7 +205,7 @@ const Footer = () => {
                                             {
                                                 aboutLinks.content.slice(0, 3).map(item => (
                                                     <FooterLinkItems key={item.id}>
-                                                        <FooterLink to={item.link}>{item.text}</FooterLink>
+                                                        <FooterExternal href={item.link} target="_blank" >{item.text}</FooterExternal>
                                                     </FooterLinkItems>
                                                 ))
                                             }
@@ -216,7 +216,7 @@ const Footer = () => {
                                             {
                                                 aboutLinks.content.slice(3, 5).map(item => (
                                                     <FooterLinkItems key={item.id}>
-                                                        <FooterLink to={item.link}>{item.text}</FooterLink>
+                                                        <FooterExternal href={item.link} target="_blank">{item.text}</FooterExternal>
                                                     </FooterLinkItems>
                                                 ))
                                             }

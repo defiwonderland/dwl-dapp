@@ -42,6 +42,16 @@ export const FooterLink = styled(NavLink)({
     textDecoration: "none",
 })
 
+export const FooterExternal = styled('a')({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    color: "#fff",
+    padding: "10px 0",
+    width: "100%",
+    textDecoration: "none",
+})
+
 export const FooterLinkItems = styled('li')(({ theme }) => ({
     listStyle: "none",
     margin: "10px 0",

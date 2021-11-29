@@ -1,14 +1,19 @@
 import * as React from 'react';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
+import { MenuConfig } from '../../../config/types';
 import Grow from '@mui/material/Grow';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 import { MdArrowDropDown } from "react-icons/md"
 import { StyledDropdownButton, StyledDropdownMenuItem, StyledPopper } from '../elements/Dropdown';
-import { DropdownMenuProps } from '../types';
-import { NavLinks } from '../elements/Toolbar';
+import { NavLinks, NavHref } from '../elements/Toolbar';
 
-const DropdownMenu: React.FC<DropdownMenuProps> = ({ title, menuItems }) => {
+interface DropdownMenuProps {
+    title: string
+    menus: MenuConfig[]
+}
+
+const DropdownMenu: React.FC<DropdownMenuProps> = ({ title, menus }) => {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLButtonElement>(null);
 
@@ -84,15 +89,29 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ title, menuItems }) => {
                                     onKeyDown={handleListKeyDown}
                                 >
                                     {
-                                        menuItems.map((item, index) => (
-                                            <NavLinks key={index} to={`/${item.toLowerCase()}`}>
-                                                <StyledDropdownMenuItem
-                                                    onClick={handleClose}
-                                                >
-                                                    {item}
-                                                </StyledDropdownMenuItem>
-                                            </NavLinks>
-                                        ))
+                                        menus.map((menu, index) => {
+                                            if (menu.link.startsWith("/")) {
+                                                return (
+                                                    <NavLinks key={index} to={menu.link}>
+                                                        <StyledDropdownMenuItem
+                                                            onClick={handleClose}
+                                                        >
+                                                            {menu.item}
+                                                        </StyledDropdownMenuItem>
+                                                    </NavLinks>
+                                                )
+                                            } else {
+                                                return (
+                                                    <NavHref href={menu.link} target={"_blank"}>
+                                                        <StyledDropdownMenuItem
+                                                            onClick={handleClose}
+                                                        >
+                                                            {menu.item}
+                                                        </StyledDropdownMenuItem>
+                                                    </NavHref>
+                                                )
+                                            }
+                                        })
                                     }
                                 </MenuList>
                             </ClickAwayListener>
