@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import { StyledH5 } from "../Text";
 import { Grid } from "@mui/material";
 import CollapseLink from "./CollapseLink";
-import { FaTwitter, FaFacebookF, FaYoutube, FaInstagram, FaSnapchat } from "react-icons/fa"
+import { FaTwitter, FaFacebookF, FaDiscord, FaInstagram, FaTelegram } from "react-icons/fa"
 import { CollapseLinkProps } from "./types";
 import UnlockButton from "../UnlockButton";
 import useActiveWeb3React from "../../hooks/useActiveWeb3React";
@@ -235,32 +235,32 @@ const Footer = () => {
                         }
                         }>
                             <SocialWrap>
-                                <SocialLink>
+                                <SocialLink href="https://mobile.twitter.com/defiwonderland_" target="_blank">
                                     <FaTwitter />
                                 </SocialLink>
                             </SocialWrap>
 
                             <SocialWrap>
-                                <SocialLink>
+                                <SocialLink href="https://www.facebook.com/DeFi-Wonderland-101812302267774/" target="_blank" >
                                     <FaFacebookF />
                                 </SocialLink>
                             </SocialWrap>
 
                             <SocialWrap>
-                                <SocialLink>
-                                    <FaYoutube />
+                                <SocialLink href="https://discord.gg/xcF7uXzf" target="_blank">
+                                    <FaDiscord />
                                 </SocialLink>
                             </SocialWrap>
 
                             <SocialWrap>
-                                <SocialLink>
+                                <SocialLink href="https://www.instagram.com/defiwonderland/" target="_blank">
                                     <FaInstagram />
                                 </SocialLink>
                             </SocialWrap>
 
                             <SocialWrap>
-                                <SocialLink>
-                                    <FaSnapchat />
+                                <SocialLink href="https://t.me/defi_wonderland" target="_blank">
+                                    <FaTelegram />
                                 </SocialLink>
                             </SocialWrap>
                         </Box>
