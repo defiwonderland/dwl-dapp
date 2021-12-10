@@ -72,7 +72,7 @@ export const useIdoContract = (address: string) => {
 }
 
 export const useWonderVerseContract = () => {
-    return useContract(getWonderVerseAddress(chainId), WONDER_VERSE_ABI, false)
+    return useContract(getWonderVerseAddress(chainId), WONDER_VERSE_ABI)
 }
 
 export const useWonderVerseCollectionContract = (withSignerIfPossible?: boolean) => {

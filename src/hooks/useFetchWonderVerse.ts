@@ -8,7 +8,6 @@ import { getBalanceNumber } from "../utils/formatBalance"
 import { BigNumber } from "bignumber.js"
 import axios from "axios"
 import { Trait } from "../pages/Wonderverse/Map/WonderverseDetails"
-import useActiveWeb3React from "./useActiveWeb3React"
 
 export const useGetWonderVerseDetails = () => {
     const [newCityDetails, setNewCityDetails] = useState<CityInfo[]>([])
